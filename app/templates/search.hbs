@@ -1,0 +1,33 @@
+<form class="form-inline">
+  <div class="form-group">
+    {{input value=query class="form-control"}}
+  </div>
+  <button type="submit" class="btn btn-default" {{action "search"}}>Search</button>
+
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Artists</h3>
+      <ul>
+        {{#each artist in artists}}
+          <li>{{artist.name}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h3>Albums</h3>
+      <ul>
+        {{#each album in albums}}
+          <li>{{album.name}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h3>Tracks</h3>
+      <ul>
+        {{#each track in tracks}}
+          <li>{{track.name}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</form>
