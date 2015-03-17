@@ -13,6 +13,9 @@ module.exports = function(environment) {
       }
     },
 
+    // TODO: how use it?
+    websocketURL: "ws://192.168.1.102:6680/mopidy/ws/",
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
