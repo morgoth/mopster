@@ -1,3 +1,7 @@
 .center {
   text-align: center;
 }
+
+ul.nav li .active {
+  font-weight: bold;
+}

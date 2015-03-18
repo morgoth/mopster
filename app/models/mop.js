@@ -50,16 +50,14 @@ export default Ember.Object.extend({
     });
   },
 
-  playTrack: function (tlid) {
+  playTrack: function (track) {
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.changeTrack({tl_track: tlid}).then(function (track) {
-          console.log(track)
-          resolve(track);
+        mopidy.playback.play(track).then(function () {
+          resolve();
         });
       });
     });
   }
-
 });

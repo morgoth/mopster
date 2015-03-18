@@ -6,8 +6,8 @@ export default Ember.View.extend({
   classNameBindings: "isCurrent:success",
 
   isCurrent: function () {
-    return this.get("controller.currentTrackNumber") === this.get("item.tlid")
-  }.property("controller.currentTrackNumber"),
+    return this.get("controller.currentTrack.tlid") === this.get("item.tlid")
+  }.property("controller.currentTrack.tlid"),
 
   trackNumber: function () {
     return this.get("item.track.track_no");
@@ -26,6 +26,6 @@ export default Ember.View.extend({
   }.property(),
 
   doubleClick: function () {
-    this.get("controller").send("playTrack", this.get("item.tlid"))
+    this.get("controller").send("playTrack", this.get("item"))
   }
 });
