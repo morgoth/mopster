@@ -32,10 +32,34 @@ export default Ember.Object.extend({
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.getTracks().then(function (tracks) {
+        mopidy.tracklist.getTlTracks().then(function (tracks) {
           resolve(tracks);
         });
       });
     });
+  },
+
+  currentTrack: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.getCurrentTlTrack().then(function (track) {
+          resolve(track);
+        });
+      });
+    });
+  },
+
+  playTrack: function (tlid) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.changeTrack({tl_track: tlid}).then(function (track) {
+          console.log(track)
+          resolve(track);
+        });
+      });
+    });
   }
+
 });

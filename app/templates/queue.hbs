@@ -1,10 +1,16 @@
-<div class="row">
-  <div class="col-md-4">
-    <h3>Queue</h3>
-    <ul>
-      {{#each track in model}}
-        <li>{{track.name}}</li>
-      {{/each}}
-    </ul>
-  </div>
-</div>
+<h3>Queue</h3>
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr class="info">
+      <td class="center">#</td>
+      <td>Name</td>
+      <td>Artist</td>
+      <td>Album</td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each track in model}}
+      {{view "queue-item" item=track}}
+    {{/each}}
+  </tbody>
+</table>
