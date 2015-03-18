@@ -59,5 +59,94 @@ export default Ember.Object.extend({
         });
       });
     });
+  },
+
+  add: function (tracks) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.add(tracks).then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  previous: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.previous().then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  next: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.next().then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  play: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.play().then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  pause: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.pause().then(function (yo) {
+          resolve();
+        });
+      });
+    });
+  },
+
+  stop: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.stop().then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  state: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.getState().then(function (state) {
+          resolve(state);
+        });
+      });
+    });
+  },
+
+  // artist, album
+  collection: function (uri) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.library.lookup(uri).then(function (artist) {
+          resolve(artist);
+        });
+      });
+    });
   }
 });

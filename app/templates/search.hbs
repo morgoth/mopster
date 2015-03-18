@@ -10,7 +10,7 @@
     <h3>Artists</h3>
     <ul>
       {{#each artist in artists}}
-        <li>{{artist.name}}</li>
+        <li>{{#link-to "artist" artist.uri}}{{artist.name}}{{/link-to}}</li>
       {{/each}}
     </ul>
   </div>
@@ -18,7 +18,7 @@
     <h3>Albums</h3>
     <ul>
       {{#each album in albums}}
-        <li>{{album.name}}</li>
+        <li>{{#link-to "album" album.uri}}{{album.name}}{{/link-to}}</li>
       {{/each}}
     </ul>
   </div>
