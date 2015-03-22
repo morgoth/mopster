@@ -3,9 +3,10 @@ import Ember from "ember";
 // TODO: simplify
 export default Ember.Object.extend({
   configure: function () {
-    var mopidy = new Mopidy({webSocketUrl: "ws://192.168.1.102:6680/mopidy/ws/"});
+    var mopidy = new Mopidy({webSocketUrl: "ws://192.168.1.102:6680/mopidy/ws/", callingConvention: "by-position-or-by-name"});
     var promise = new Promise(function (resolve, reject) {
       mopidy.on(function (ev, args) {
+        // console.log("ev" + ev + " " + Ember.inspect(args));
         console.log(ev);
         if (ev === "state:online") {
           resolve(mopidy);
@@ -54,7 +55,7 @@ export default Ember.Object.extend({
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.play(track).then(function () {
+        mopidy.playback.play({tl_track: track}).then(function () {
           resolve();
         });
       });
@@ -65,7 +66,18 @@ export default Ember.Object.extend({
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.add(tracks).then(function () {
+        mopidy.tracklist.add({tracks: tracks}).then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  addURI: function (uri) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.add({uri: uri}).then(function () {
           resolve();
         });
       });
@@ -109,7 +121,7 @@ export default Ember.Object.extend({
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.pause().then(function (yo) {
+        mopidy.playback.pause().then(function () {
           resolve();
         });
       });
@@ -121,6 +133,28 @@ export default Ember.Object.extend({
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
         mopidy.playback.stop().then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  volume: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.getVolume().then(function (volume) {
+          resolve(volume);
+        });
+      });
+    });
+  },
+
+  setVolume: function (volume) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.setVolume(parseInt(volume)).then(function () {
           resolve();
         });
       });
@@ -143,7 +177,7 @@ export default Ember.Object.extend({
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.library.lookup(uri).then(function (artist) {
+        mopidy.library.lookup({uri: uri}).then(function (artist) {
           resolve(artist);
         });
       });

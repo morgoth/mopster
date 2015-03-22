@@ -1,26 +1,26 @@
 <ul class="nav navbar-nav navbar-right">
   <li>
-    <button class="btn btn-default navbar-btn" {{action "previous"}}>
+    <button class="btn btn-default navbar-btn" title="Previous" {{action "previous"}}>
       <span class="glyphicon glyphicon-backward"></span>
     </button>
   </li>
   <li {{bind-attr class="isPlayVisible::hidden"}}>
-    <button class="btn btn-default navbar-btn" {{action "play"}}>
+    <button class="btn btn-default navbar-btn" title="Play" {{action "play"}}>
       <span class="glyphicon glyphicon-play"></span>
     </button>
   </li>
   <li {{bind-attr class="isPauseVisible::hidden"}}>
-    <button class="btn btn-default navbar-btn" {{action "pause"}}>
+    <button class="btn btn-default navbar-btn" title="Pause" {{action "pause"}}>
       <span class="glyphicon glyphicon-pause"></span>
     </button>
   </li>
   <li>
-    <button class="btn btn-default navbar-btn" {{action "stop"}}>
+    <button class="btn btn-default navbar-btn" title="Stop" {{action "stop"}}>
       <span class="glyphicon glyphicon-stop"></span>
     </button>
   </li>
   <li>
-    <button class="btn btn-default navbar-btn" {{action "next"}}>
+    <button class="btn btn-default navbar-btn" title="Next" {{action "next"}}>
       <span class="glyphicon glyphicon-forward"></span>
     </button>
   </li>

@@ -5,3 +5,12 @@
 ul.nav li .active {
   font-weight: bold;
 }
+
+.range-slider {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.default-cursor {
+  cursor: default;
+}

@@ -7,7 +7,6 @@ export default Ember.Component.extend({
   setup: function () {
     var that = this;
     this.get("mop").state().then(function (state) {
-      console.log(state);
       that.set("status", state);
     });
   }.on("init"),

@@ -3,10 +3,11 @@ import Ember from 'ember';
 export default Ember.View.extend({
   tagName: "tr",
   templateName: "queue-item",
+  classNames: ["default-cursor"],
   classNameBindings: "isCurrent:success",
 
   isCurrent: function () {
-    return this.get("controller.currentTrack.tlid") === this.get("item.tlid")
+    return this.get("controller.currentTrack.tlid") === this.get("item.tlid");
   }.property("controller.currentTrack.tlid"),
 
   trackNumber: function () {
@@ -26,6 +27,6 @@ export default Ember.View.extend({
   }.property(),
 
   doubleClick: function () {
-    this.get("controller").send("playTrack", this.get("item"))
+    this.get("controller").send("playTrack", this.get("item"));
   }
 });
