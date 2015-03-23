@@ -11,7 +11,7 @@ export default Ember.View.extend({
   }.on("didInsertElement"),
 
   keyPress: function(e) {
-    if (e.keyCode === 127) {// Delete
+    if ([127, 46].contains(e.keyCode)) {// Delete
       this.get("controller").send("removeSelectedTracks");
     }
   }

@@ -27,3 +27,7 @@ ul.nav li .active {
 .queue-table:focus {
   outline: none;
 }
+
+.success-info {
+  background-color: #DCEEE8;
+}

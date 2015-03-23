@@ -6,10 +6,15 @@ export default Ember.View.extend({
   classNameBindings: ["statusClassName"],
 
   statusClassName: function () {
-    if (this.get("controller.currentTrack.tlid") === this.get("item.tlid")) {
-      return "success";
-    } else if (this.get("controller.selectedTrackIds").contains(this.get("item.tlid"))) {
+    var isCurrent = (this.get("controller.currentTrack.tlid") === this.get("item.tlid")),
+        isSelected = this.get("controller.selectedTrackIds").contains(this.get("item.tlid"));
+
+    if (isCurrent && isSelected) {
+      return "success-info";
+    } else if (isSelected) {
       return "info";
+    } else if (isCurrent) {
+      return "success";
     }
   }.property("controller.currentTrack.tlid", "controller.selectedTrackIds.@each"),
 

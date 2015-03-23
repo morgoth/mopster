@@ -4,9 +4,15 @@ export default Ember.Controller.extend({
   queryParams: ["query"],
 
   assignModel: function () {
-    var result = this.get("model");
+    var result = this.get("model"),
+        query = this.get("query").toLowerCase();
 
-    this.set("artists", result[1].artists);
+    var lev = result[1].artists.reduce(function (memo, item) {
+      memo.push({item: item, distance: new Levenshtein(query, item.name.toLowerCase()).distance});
+      return memo;
+    }, []);
+
+    this.set("artists", lev.sortBy("distance").mapBy("item"));
     this.set("albums", result[1].albums);
     this.set("tracks", result[1].tracks);
   }.observes("model"),
