@@ -3,7 +3,11 @@ import Ember from "ember";
 // TODO: simplify
 export default Ember.Object.extend({
   configure: function () {
-    var mopidy = new Mopidy({webSocketUrl: this.get("websocketURL"), callingConvention: "by-position-or-by-name"});
+    var options = {callingConvention: "by-position-or-by-name"};
+    if (this.get("websocketURL")) {
+      options.webSocketUrl = this.get("websocketURL");
+    }
+    var mopidy = new Mopidy(options);
     var promise = new Promise(function (resolve, reject) {
       mopidy.on(function (ev, args) {
         // console.log("ev" + ev + " " + Ember.inspect(args));

@@ -44,7 +44,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.websocketURL = "ws://localhost:6680/mopidy/ws/";
   }
 
   return ENV;
