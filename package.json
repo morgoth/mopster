@@ -1,7 +1,7 @@
 {
   "name": "mopster",
-  "version": "0.0.0",
-  "description": "Small description for mopster goes here",
+  "version": "0.1.0",
+  "description": "Mopidy client",
   "private": true,
   "directories": {
     "doc": "doc",
@@ -12,11 +12,11 @@
     "build": "ember build",
     "test": "ember test"
   },
-  "repository": "",
+  "repository": "https://github.com/cowbell/mopster.git",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.12.0"
   },
-  "author": "",
+  "author": "Wojciech Wnętrzak",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
