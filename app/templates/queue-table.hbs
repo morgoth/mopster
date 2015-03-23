@@ -1,0 +1,13 @@
+<thead>
+  <tr class="active">
+    <td class="center">#</td>
+    <td>Title</td>
+    <td>Artist</td>
+    <td>Album</td>
+  </tr>
+</thead>
+<tbody class="default-cursor">
+  {{#each track in model}}
+    {{view "queue-item" item=track}}
+  {{/each}}
+</tbody>

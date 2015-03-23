@@ -1,17 +1,3 @@
 <h3 class="pull-left">Queue</h3>
 {{add-uri}}
-<table class="table table-bordered table-condensed">
-  <thead>
-    <tr class="active">
-      <td class="center">#</td>
-      <td>Title</td>
-      <td>Artist</td>
-      <td>Album</td>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each track in model}}
-      {{view "queue-item" item=track}}
-    {{/each}}
-  </tbody>
-</table>
+{{view "queue-table"}}

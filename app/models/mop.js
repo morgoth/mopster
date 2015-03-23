@@ -73,6 +73,17 @@ export default Ember.Object.extend({
     });
   },
 
+  removeTracks: function (ids) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.remove({tlid: ids}).then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
   addURI: function (uri) {
     var that = this;
     return new Promise(function (resolve, reject) {
@@ -154,7 +165,7 @@ export default Ember.Object.extend({
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.setVolume(parseInt(volume)).then(function () {
+        mopidy.playback.setVolume({volume: parseInt(volume)}).then(function () {
           resolve();
         });
       });
