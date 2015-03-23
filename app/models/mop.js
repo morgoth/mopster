@@ -62,17 +62,6 @@ export default Ember.Object.extend({
     });
   },
 
-  add: function (tracks) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.add({tracks: tracks}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
   removeTracks: function (ids) {
     var that = this;
     return new Promise(function (resolve, reject) {

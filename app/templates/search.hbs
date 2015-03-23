@@ -10,7 +10,7 @@
     <h3>Artists</h3>
     <ul>
       {{#each artist in artists}}
-        <li>{{#link-to "artist" artist.uri}}{{artist.name}}{{/link-to}}</li>
+        <li>{{#link-to "albums" artist.uri}}{{artist.name}}{{/link-to}}</li>
       {{/each}}
     </ul>
   </div>
@@ -18,7 +18,7 @@
     <h3>Albums</h3>
     <ul>
       {{#each album in albums}}
-        <li>{{#link-to "album" album.uri}}{{album.artists.0.name}} - {{album.name}}{{/link-to}}</li>
+        <li>{{#link-to "albums" album.uri}}{{album.artists.0.name}} - {{album.name}}{{/link-to}}</li>
       {{/each}}
     </ul>
   </div>
@@ -26,7 +26,7 @@
     <h3>Tracks</h3>
     <ul>
       {{#each track in tracks}}
-        <li>{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}</li>
+        <li>{{#link-to "albums" track.uri}}{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}{{/link-to}}</li>
       {{/each}}
     </ul>
   </div>
