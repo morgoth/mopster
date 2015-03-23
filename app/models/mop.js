@@ -183,6 +183,28 @@ export default Ember.Object.extend({
     });
   },
 
+  getMute: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.getMute().then(function (value) {
+          resolve(value);
+        });
+      });
+    });
+  },
+
+  setMute: function (value) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.setMute({value: value}).then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
   // artist, album
   collection: function (uri) {
     var that = this;
