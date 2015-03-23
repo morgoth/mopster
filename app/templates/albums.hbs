@@ -2,15 +2,15 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       {{#link-to "albums" album.0.album.uri}} {{album.0.artists.0.name}} - {{album.0.album.name}} - {{album.0.date}}{{/link-to}}
-      <button class="btn btn-default" {{action "add" album.0.album.uri}}>Add to queue</button>
+      <button class="btn btn-default btn-sm" {{action "add" album.0.album.uri}}>Add to queue</button>
     </div>
-    <table class="table">
+    <table class="table table-condensed">
       <tbody>
         {{#each track in album}}
           <tr>
-            <td class="center">{{track.track_no}}</td>
-            <td>{{track.name}}</td>
-            <td><button class="btn btn-default" {{action "add" track.uri}}>Add to queue</button></td>
+            <td class="center col-md-1">{{track.track_no}}</td>
+            <td class="col-md-4">{{track.name}}</td>
+            <td class="col-md-7"><button class="btn btn-default btn-xs" {{action "add" track.uri}}>Add to queue</button></td>
           </tr>
         {{/each}}
       </tbody>

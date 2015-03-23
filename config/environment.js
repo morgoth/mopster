@@ -4,6 +4,9 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'mopster',
     environment: environment,
+    contentSecurityPolicy: {
+      "connect-src": "'self' ws://*"
+    },
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -12,9 +15,6 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-
-    // TODO: how use it?
-    websocketURL: "ws://192.168.1.102:6680/mopidy/ws/",
 
     APP: {
       // Here you can pass flags/options to your application instance
@@ -28,6 +28,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.websocketURL =  "ws://192.168.1.102:6680/mopidy/ws/";
   }
 
   if (environment === 'test') {
@@ -43,7 +44,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.websocketURL = "ws://localhost:6680/mopidy/ws/";
   }
 
   return ENV;

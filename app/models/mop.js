@@ -3,11 +3,11 @@ import Ember from "ember";
 // TODO: simplify
 export default Ember.Object.extend({
   configure: function () {
-    var mopidy = new Mopidy({webSocketUrl: "ws://192.168.1.102:6680/mopidy/ws/", callingConvention: "by-position-or-by-name"});
+    var mopidy = new Mopidy({webSocketUrl: this.get("websocketURL"), callingConvention: "by-position-or-by-name"});
     var promise = new Promise(function (resolve, reject) {
       mopidy.on(function (ev, args) {
         // console.log("ev" + ev + " " + Ember.inspect(args));
-        console.log(ev);
+        // console.log(ev);
         if (ev === "state:online") {
           resolve(mopidy);
         }

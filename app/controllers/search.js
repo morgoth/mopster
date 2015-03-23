@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
 
   assignModel: function () {
     var result = this.get("model");
-    console.log(result);
+
     this.set("artists", result[1].artists);
     this.set("albums", result[1].albums);
     this.set("tracks", result[1].tracks);
