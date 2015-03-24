@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.View.extend({
   tagName: "table",
-  templateName: "queue-table",
+  templateName: "queue/table",
   classNames: ["table", "table-bordered", "table-condensed", "queue-table"],
 
   setFocus: function() {

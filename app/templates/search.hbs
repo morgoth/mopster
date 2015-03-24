@@ -1,3 +1,7 @@
+{{#if errorMessage}}
+  <div class="alert alert-danger">{{errorMessage}}</div>
+{{/if}}
+
 <form class="form-inline" {{action "search" on="submit"}}>
   <div class="form-group">
     {{input value=query class="form-control"}}

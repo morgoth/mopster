@@ -4,9 +4,6 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'mopster',
     environment: environment,
-    contentSecurityPolicy: {
-      "connect-src": "'self' ws://*"
-    },
     baseURL: '/',
     // Due to lack of fancy server configuration, only root path is available, thus
     // we need to stick with hash routing.

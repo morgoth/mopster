@@ -28,6 +28,8 @@ export default Ember.Object.extend({
       that.get("clientPromise").then(function (mopidy) {
         mopidy.library.search({any: [query]}).then(function (tracks) {
           resolve(tracks);
+        }, function (rejection) {
+          reject(rejection.data.message);
         });
       });
     });
@@ -82,6 +84,17 @@ export default Ember.Object.extend({
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
         mopidy.tracklist.add({uri: uri}).then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  addTracks: function (tracks) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.add({tracks: tracks}).then(function () {
           resolve();
         });
       });
@@ -193,6 +206,17 @@ export default Ember.Object.extend({
       that.get("clientPromise").then(function (mopidy) {
         mopidy.playback.setMute({value: value}).then(function () {
           resolve();
+        });
+      });
+    });
+  },
+
+  browse: function (uri) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.library.browse({uri: uri}).then(function (result) {
+          resolve(result);
         });
       });
     });
