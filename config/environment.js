@@ -8,7 +8,9 @@ module.exports = function(environment) {
       "connect-src": "'self' ws://*"
     },
     baseURL: '/',
-    locationType: 'auto',
+    // Due to lack of fancy server configuration, only root path is available, thus
+    // we need to stick with hash routing.
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
