@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
     var result = this.get("model"),
         query = this.get("query").toLowerCase();
 
-    var lev = result[1].artists.reduce(function (memo, item) {
+    var lev = (result[1].artists || []).reduce(function (memo, item) {
       memo.push({item: item, distance: new Levenshtein(query, item.name.toLowerCase()).distance});
       return memo;
     }, []);

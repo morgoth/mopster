@@ -1,12 +1,3 @@
-<div class="navbar-form navbar-right">
-  <button type="button" title="Mute" {{action "mute"}} {{bind-attr class=":btn :btn-default isMuted:hidden"}}>
-    <span class="glyphicon glyphicon-volume-up"></span>
-  </button>
-  <button type="button" title="Unmute" {{action "unmute"}} {{bind-attr class=":btn :btn-default isMuted::hidden"}}>
-    <span class="glyphicon glyphicon-volume-off"></span>
-  </button>
-
-  <div class="form-group input-group">
-    {{input type="range" min="0" max="100" class="range-slider" value=volume}}
-  </div>
+<div class="form-group input-group">
+  {{input type="range" min="0" max="100" class="range-slider" value=volume}}
 </div>

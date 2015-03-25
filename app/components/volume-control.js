@@ -3,6 +3,7 @@ import layout from '../templates/components/volume-control';
 
 export default Ember.Component.extend({
   layout: layout,
+  classNames: ["nav", "navbar-nav", "navbar-right", "navbar-form"],
 
   setup: function () {
     var that = this;
@@ -12,17 +13,9 @@ export default Ember.Component.extend({
       that.set("volume", volume);
     });
 
-    this.get("mop").getMute().then(function (mute) {
-      that.set("isMuted", mute);
-    });
-
     this.get("mop.client").on("event:volumeChanged", function (changes) {
       that.set("volumeRemote", changes.volume);
       that.set("volume", changes.volume);
-    });
-
-    this.get("mop.client").on("event:muteChanged", function (changes) {
-      that.set("isMuted", changes.mute);
     });
   }.on("init"),
 
@@ -30,15 +23,5 @@ export default Ember.Component.extend({
     if (this.get("volumeRemote") !== this.get("volume")) {
       this.get("mop").setVolume(this.get("volume"));
     }
-  }.observes("volume"),
-
-  actions: {
-    mute: function () {
-      this.get("mop").setMute(true);
-    },
-
-    unmute: function () {
-      this.get("mop").setMute(false);
-    }
-  }
+  }.observes("volume")
 });

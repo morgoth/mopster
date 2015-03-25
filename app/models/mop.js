@@ -10,8 +10,8 @@ export default Ember.Object.extend({
     var mopidy = new Mopidy(options);
     var promise = new Promise(function (resolve, reject) {
       mopidy.on(function (ev, args) {
-        // console.log("ev" + ev + " " + Ember.inspect(args));
-        // console.log(ev);
+        //console.log("ev" + ev + " " + Ember.inspect(args));
+        //console.log(ev);
         if (ev === "state:online") {
           resolve(mopidy);
         }
@@ -216,6 +216,17 @@ export default Ember.Object.extend({
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
         mopidy.library.browse({uri: uri}).then(function (result) {
+          resolve(result);
+        });
+      });
+    });
+  },
+
+  time: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.getTimePosition().then(function (result) {
           resolve(result);
         });
       });

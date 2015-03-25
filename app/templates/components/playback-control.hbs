@@ -1,27 +1,19 @@
-<ul class="nav navbar-nav navbar-right">
-  <li>
-    <button class="btn btn-default navbar-btn" title="Previous" {{action "previous"}}>
-      <span class="glyphicon glyphicon-backward"></span>
-    </button>
-  </li>
-  <li {{bind-attr class="isPlayVisible::hidden"}}>
-    <button class="btn btn-default navbar-btn" title="Play" {{action "play"}}>
-      <span class="glyphicon glyphicon-play"></span>
-    </button>
-  </li>
-  <li {{bind-attr class="isPauseVisible::hidden"}}>
-    <button class="btn btn-default navbar-btn" title="Pause" {{action "pause"}}>
-      <span class="glyphicon glyphicon-pause"></span>
-    </button>
-  </li>
-  <li>
-    <button class="btn btn-default navbar-btn" title="Stop" {{action "stop"}}>
-      <span class="glyphicon glyphicon-stop"></span>
-    </button>
-  </li>
-  <li>
-    <button class="btn btn-default navbar-btn" title="Next" {{action "next"}}>
-      <span class="glyphicon glyphicon-forward"></span>
-    </button>
-  </li>
-</ul>
+<button class="btn btn-default navbar-btn" title="Previous" {{action "previous"}}>
+  <span class="glyphicon glyphicon-backward"></span>
+</button>
+
+<button title="Play" {{action "play"}} {{bind-attr class=":btn :btn-default :navbar-btn isPlayVisible::hidden"}}>
+  <span class="glyphicon glyphicon-play"></span>
+</button>
+
+<button title="Pause" {{action "pause"}} {{bind-attr class=":btn :btn-default :navbar-btn isPauseVisible::hidden"}}>
+  <span class="glyphicon glyphicon-pause"></span>
+</button>
+
+<button class="btn btn-default navbar-btn" title="Stop" {{action "stop"}}>
+  <span class="glyphicon glyphicon-stop"></span>
+</button>
+
+<button class="btn btn-default navbar-btn" title="Next" {{action "next"}}>
+  <span class="glyphicon glyphicon-forward"></span>
+</button>

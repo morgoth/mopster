@@ -3,6 +3,7 @@ import layout from '../templates/components/playback-control';
 
 export default Ember.Component.extend({
   layout: layout,
+  classNames: ["nav", "navbar-nav", "navbar-right"],
 
   setup: function () {
     var that = this;
