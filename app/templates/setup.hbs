@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <h3 class="center">Provide address of server with Mopidy</h3>
+
+  <form {{action "save" on="submit"}}>
+    <div class="form-group">
+      {{input class="form-control" value=serverURL placeholder="192.168.1.2" required=true}}
+    </div>
+    <button type="submit" class="btn btn-default">Save</button>
+  </form>
+</div>

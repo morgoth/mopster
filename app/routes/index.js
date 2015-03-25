@@ -2,6 +2,10 @@ import Ember from "ember";
 
 export default Ember.Route.extend({
   beforeModel: function () {
-    this.transitionTo("queue");
+    if (localStorage.getItem("serverURL")) {
+      this.transitionTo("queue");
+    } else {
+      this.transitionTo("setup");
+    }
   }
 });

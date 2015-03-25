@@ -4,14 +4,18 @@ import Ember from "ember";
 export default Ember.Object.extend({
   configure: function () {
     var options = {callingConvention: "by-position-or-by-name"};
-    if (this.get("websocketURL")) {
-      options.webSocketUrl = this.get("websocketURL");
-    }
+    // if (this.get("websocketURL")) {
+    //   options.webSocketUrl = this.get("websocketURL");
+    // }
+
+    // TODO: rework configuration
+    options.webSocketUrl = "ws://" + localStorage.getItem("serverURL") + ":6680/mopidy/ws/"
+
     var mopidy = new Mopidy(options);
     var promise = new Promise(function (resolve, reject) {
       mopidy.on(function (ev, args) {
-        //console.log("ev" + ev + " " + Ember.inspect(args));
-        //console.log(ev);
+        // console.log("ev" + ev + " " + Ember.inspect(args));
+        // console.log(args);
         if (ev === "state:online") {
           resolve(mopidy);
         }
