@@ -1,11 +1,9 @@
 import Ember from "ember";
+import AuthorizedRoute from './authorized'
 
-export default Ember.Route.extend({
+export default AuthorizedRoute.extend({
   beforeModel: function () {
-    if (localStorage.getItem("serverURL")) {
-      this.transitionTo("queue");
-    } else {
-      this.transitionTo("setup");
-    }
+    this._super();
+    this.transitionTo("queue");
   }
 });

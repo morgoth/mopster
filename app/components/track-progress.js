@@ -44,6 +44,8 @@ export default Ember.Component.extend({
         timer.start();
       } else if (changes.new_state === "paused") {
         timer.stop();
+      } else if (changes.new_state === "stopped") {
+        timer.reset();
       }
     });
 

@@ -2,7 +2,7 @@ import Mop from "../models/mop";
 import config from "mopster/config/environment";
 
 export function initialize(container, application) {
-  var mop = Mop.create({websocketURL: config.websocketURL});
+  var mop = Mop.create();
 
   application.register("mopidy:instance", mop, {instantiate: false});
   application.inject("controller", "mop", "mopidy:instance");

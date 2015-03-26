@@ -4,12 +4,7 @@ import Ember from "ember";
 export default Ember.Object.extend({
   configure: function () {
     var options = {callingConvention: "by-position-or-by-name"};
-    // if (this.get("websocketURL")) {
-    //   options.webSocketUrl = this.get("websocketURL");
-    // }
-
-    // TODO: rework configuration
-    options.webSocketUrl = "ws://" + localStorage.getItem("serverURL") + ":6680/mopidy/ws/"
+    options.webSocketUrl = "ws://" + this.get("serverURL") + ":6680/mopidy/ws/"
 
     var mopidy = new Mopidy(options);
     var promise = new Promise(function (resolve, reject) {
@@ -24,7 +19,7 @@ export default Ember.Object.extend({
 
     this.set("client", mopidy);
     this.set("clientPromise", promise);
-  }.on("init"),
+  }.observes("serverURL"),
 
   search: function (query) {
     var that = this;
