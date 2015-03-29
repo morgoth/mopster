@@ -3,7 +3,8 @@
 
   <form {{action "save" on="submit"}}>
     <div class="form-group">
-      {{input class="form-control" value=serverURL placeholder="192.168.1.2" required=true}}
+      {{input class="form-control" value=serverURL placeholder="192.168.1.2 or localhost" required=true}}
+      <span class="help-block">Value will be stored in browser local storage for your convenience</span>
     </div>
     <button type="submit" class="btn btn-default">Save</button>
   </form>

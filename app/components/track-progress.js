@@ -12,6 +12,7 @@ export default Ember.Component.extend({
 
     timer = new ProgressTimer({
       callback: function (position, duration) {
+        that.set("duration", duration);
         that.set("progress", position / duration * 100);
       },
       // Target milliseconds between callbacks, default: 100, min: 10.
@@ -26,6 +27,7 @@ export default Ember.Component.extend({
     mop.currentTrack().then(function (track) {
       mop.time().then(function (time) {
         timer.set(time, track.track.length);
+        that.set("isDisabled", Ember.isEmpty(track.track.length));
 
         mop.state().then(function (state) {
           if (state === "playing") {
@@ -40,16 +42,21 @@ export default Ember.Component.extend({
     });
 
     mop.client.on("event:playbackStateChanged", function (changes) {
-      if (changes.new_state === "playing") {
-        timer.start();
-      } else if (changes.new_state === "paused") {
-        timer.stop();
-      } else if (changes.new_state === "stopped") {
-        timer.reset();
+      switch (changes.new_state) {
+        case "playing":
+          timer.start();
+          break;
+        case "paused":
+          timer.stop();
+          break;
+        case "stopped":
+          timer.reset();
+          break;
       }
     });
 
     mop.client.on("event:trackPlaybackStarted", function (changes) {
+      that.set("isDisabled", Ember.isEmpty(changes.tl_track.track.length));
       timer.set(0, changes.tl_track.track.length).start();
     });
   }.on("init"),
@@ -57,4 +64,11 @@ export default Ember.Component.extend({
   clearTimer: function() {
     this.get("timer").reset();
   }.on("willDestroyElement"),
+
+  mouseUp: function () {
+    if (!this.get("isDisabled")) {
+      var timePosition = Math.round(this.get("progress") * this.get("duration") / 100);
+      this.get("mop").seek(timePosition);
+    }
+  }
 });

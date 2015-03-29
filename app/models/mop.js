@@ -232,6 +232,17 @@ export default Ember.Object.extend({
     });
   },
 
+  seek: function (timePosition) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.playback.seek({time_position: timePosition}).then(function (result) {
+          resolve(result);
+        });
+      });
+    });
+  },
+
   // artist, album
   collection: function (uri) {
     var that = this;
