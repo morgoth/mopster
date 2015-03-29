@@ -1,6 +1,6 @@
-<button type="button" title="Mute" {{action "mute"}} {{bind-attr class=":btn :btn-default :navbar-btn isMuted:hidden"}}>
+<button type="button" title="Mute" {{action "mute"}} class="btn btn-default navbar-btn {{if isMuted 'hidden'}}">
   <span class="glyphicon glyphicon-volume-up"></span>
 </button>
-<button type="button" title="Unmute" {{action "unmute"}} {{bind-attr class=":btn :btn-default :navbar-btn isMuted::hidden"}}>
+<button type="button" title="Unmute" {{action "unmute"}} class="btn btn-default navbar-btn {{if isMuted '' 'hidden'}}">
   <span class="glyphicon glyphicon-volume-off"></span>
 </button>

@@ -6,7 +6,7 @@
   <div class="form-group">
     {{focus-input value=query class="form-control" required=true}}
   </div>
-  <button type="submit" class="btn btn-default" {{bind-attr disabled="isSearching"}}>
+  <button type="submit" class="btn btn-default" disabled={{isSearching}}>
     Search <span {{bind-attr class=":glyphicon :glyphicon-refresh isSearching::hidden"}}></span>
   </button>
 </form>

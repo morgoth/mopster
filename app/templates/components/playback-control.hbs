@@ -2,11 +2,11 @@
   <span class="glyphicon glyphicon-backward"></span>
 </button>
 
-<button title="Play" {{action "play"}} {{bind-attr class=":btn :btn-default :navbar-btn isPlayVisible::hidden"}}>
+<button title="Play" {{action "play"}} class="btn btn-default navbar-btn {{if isPlayVisible '' 'hidden'}}">
   <span class="glyphicon glyphicon-play"></span>
 </button>
 
-<button title="Pause" {{action "pause"}} {{bind-attr class=":btn :btn-default :navbar-btn isPauseVisible::hidden"}}>
+<button title="Pause" {{action "pause"}} class="btn btn-default navbar-btn {{if isPauseVisible '' 'hidden'}}">
   <span class="glyphicon glyphicon-pause"></span>
 </button>
 
