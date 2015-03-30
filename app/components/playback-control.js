@@ -6,9 +6,12 @@ export default Ember.Component.extend({
   classNames: ["nav", "navbar-nav", "navbar-right"],
 
   setup: function () {
-    var that = this;
-    this.get("mop").state().then(function (state) {
-      that.set("status", state);
+    this.get("mop").state().then( (state) => {
+      this.set("status", state);
+    });
+
+    this.get("mop.client").on("event:playbackStateChanged", (changes) => {
+      this.set("status", changes.new_state);
     });
   }.on("init"),
 
@@ -24,24 +27,15 @@ export default Ember.Component.extend({
 
   actions: {
     play: function () {
-      var that = this;
-      this.get("mop").play().then(function () {
-        that.set("status", "playing");
-      });
+      this.get("mop").play();
     },
 
     pause: function () {
-      var that = this;
-      this.get("mop").pause().then(function () {
-        that.set("status", "paused");
-      });
+      this.get("mop").pause();
     },
 
     stop: function () {
-      var that = this;
-      this.get("mop").stop().then(function () {
-        that.set("status", "paused");
-      });
+      this.get("mop").stop();
     },
 
     previous: function () {

@@ -4,7 +4,7 @@
 
 ## Usage
 
-Go to [Online version]("http://mopster.cowbell-labs.com") or setup it locally on machine with Mopidy server.
+Go to [Online version](http://mopster.cowbell-labs.com) or setup it locally on machine with Mopidy server.
 
 On your machine with Mopidy server run:
 ```
@@ -15,3 +15,8 @@ cd mopster && git checkout gh-pages
 Point your Mopidy config to repository path.
 
 To update client, go to repository path and run `git pull origin gh-pages`
+
+
+## Support
+
+Tested with Mopidy v1.0

@@ -203,7 +203,7 @@ export default Ember.Object.extend({
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.setMute({value: value}).then(function () {
+        mopidy.playback.setMute({mute: value}).then(function () {
           resolve();
         });
       });

@@ -6,13 +6,12 @@ export default Ember.Component.extend({
   classNames: ["nav", "navbar-nav", "navbar-right"],
 
   setup: function () {
-    var that = this;
-    this.get("mop").getMute().then(function (mute) {
-      that.set("isMuted", mute);
+    this.get("mop").getMute().then( (mute) => {
+      this.set("isMuted", mute);
     });
 
-    this.get("mop.client").on("event:muteChanged", function (changes) {
-      that.set("isMuted", changes.mute);
+    this.get("mop.client").on("event:muteChanged", (changes) => {
+      this.set("isMuted", changes.mute);
     });
   }.on("init"),
 

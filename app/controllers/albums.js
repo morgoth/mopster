@@ -35,9 +35,8 @@ export default Ember.Controller.extend({
 
   actions: {
     add: function (uri) {
-      var ctrl = this;
-      this.get("mop").addURI(uri).then(function () {
-        ctrl.transitionToRoute("queue");
+      this.get("mop").addURI(uri).then( () => {
+        this.transitionToRoute("queue");
       });
     }
   }
