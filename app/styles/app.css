@@ -15,6 +15,10 @@ ul.nav li .active {
   cursor: default;
 }
 
+.gap {
+  margin-top: 20px;
+}
+
 .queue-table tbody {
   -webkit-touch-callout: none;
   -webkit-user-select: none;

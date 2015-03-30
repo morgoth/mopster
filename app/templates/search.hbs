@@ -7,33 +7,54 @@
     {{focus-input value=query class="form-control" required=true}}
   </div>
   <button type="submit" class="btn btn-default" disabled={{isSearching}}>
-    Search <span {{bind-attr class=":glyphicon :glyphicon-refresh isSearching::hidden"}}></span>
+    Search <span class="glyphicon glyphicon-refresh {{if isSearching '' 'hidden'}}"></span>
   </button>
 </form>
 
-<div class="row">
+<ul class="nav nav-pills gap">
+  {{#each type in sourceTypes}}
+    {{view "search/source-type" sourceType=type}}
+  {{/each}}
+</ul>
+
+<div class="row gap">
   <div class="col-md-2">
-    <h3>Artists</h3>
-    <ul class="list-unstyled">
-      {{#each artist in artists}}
-        <li>{{#link-to "albums" artist.uri}}{{artist.name}}{{/link-to}}</li>
-      {{/each}}
-    </ul>
+    <div class="panel panel-default">
+      <div class="panel-heading">Artists</div>
+
+      <table class="table table-condensed">
+        <tbody>
+          {{#each artist in artists}}
+            <tr><td>{{#link-to "albums" artist.uri}}{{artist.name}}{{/link-to}}</td></tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="col-md-4">
-    <h3>Albums</h3>
-    <ul class="list-unstyled">
-      {{#each album in albums}}
-        <li>{{#link-to "albums" album.uri}}{{album.artists.0.name}} - {{album.name}}{{/link-to}}</li>
-      {{/each}}
-    </ul>
+    <div class="panel panel-default">
+      <div class="panel-heading">Albums</div>
+
+      <table class="table table-condensed">
+        <tbody>
+          {{#each album in albums}}
+            <tr><td>{{#link-to "albums" album.uri}}{{album.artists.0.name}} - {{album.name}}{{/link-to}}</td></tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="col-md-6">
-    <h3>Tracks</h3>
-    <ul class="list-unstyled">
-      {{#each track in tracks}}
-        <li>{{#link-to "albums" track.uri}}{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}{{/link-to}}</li>
-      {{/each}}
-    </ul>
+    <div class="panel panel-default">
+      <div class="panel-heading">Tracks</div>
+
+      <table class="table table-condensed">
+        <tbody>
+          {{#each track in tracks}}
+            <tr><td>{{#link-to "albums" track.uri}}{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}{{/link-to}}</td></tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

@@ -7,15 +7,24 @@ export default Ember.Controller.extend({
     var result = this.get("model"),
         query = this.get("query").toLowerCase();
 
-    var lev = (result[0].artists || []).reduce(function (memo, item) {
+    this.set("sourceTypes", result.mapBy("uri"));
+    this.set("sourceType", this.get("sourceTypes")[0]);
+    this.set("modelByType", result[0]);
+  }.observes("model"),
+
+  splitModel: function () {
+    var query = this.get("query").toLowerCase(),
+        modelByType = this.get("modelByType");
+
+    this.set("albums", modelByType.albums);
+    this.set("tracks", modelByType.tracks);
+
+    var lev = (modelByType.artists || []).reduce(function (memo, item) {
       memo.push({item: item, distance: new Levenshtein(query, item.name.toLowerCase()).distance});
       return memo;
     }, []);
-
     this.set("artists", lev.sortBy("distance").mapBy("item"));
-    this.set("albums", result[0].albums);
-    this.set("tracks", result[0].tracks);
-  }.observes("model"),
+  }.observes("modelByType"),
 
   actions: {
     search: function () {
@@ -30,6 +39,11 @@ export default Ember.Controller.extend({
         ctrl.set("isSearching", false);
         ctrl.set("errorMessage", rejection);
       });
+    },
+
+    filterBy: function (sourceType) {
+      this.set("sourceType", sourceType);
+      this.set("modelByType", this.get("model").findBy("uri", sourceType));
     }
   }
 });

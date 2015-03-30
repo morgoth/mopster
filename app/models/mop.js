@@ -100,6 +100,17 @@ export default Ember.Object.extend({
     });
   },
 
+  lookup: function (uris) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.library.lookup({uris: uris}).then(function (result) {
+          resolve(result);
+        });
+      });
+    });
+  },
+
   previous: function () {
     var that = this;
     return new Promise(function (resolve, reject) {
@@ -155,28 +166,6 @@ export default Ember.Object.extend({
     });
   },
 
-  volume: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.getVolume().then(function (volume) {
-          resolve(volume);
-        });
-      });
-    });
-  },
-
-  setVolume: function (volume) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.setVolume({volume: parseInt(volume)}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
   state: function () {
     var that = this;
     return new Promise(function (resolve, reject) {
@@ -188,11 +177,33 @@ export default Ember.Object.extend({
     });
   },
 
+  volume: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.mixer.getVolume().then(function (volume) {
+          resolve(volume);
+        });
+      });
+    });
+  },
+
+  setVolume: function (volume) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.mixer.setVolume({volume: parseInt(volume)}).then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
   getMute: function () {
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.getMute().then(function (value) {
+        mopidy.mixer.getMute().then(function (value) {
           resolve(value);
         });
       });
@@ -203,7 +214,7 @@ export default Ember.Object.extend({
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.setMute({mute: value}).then(function () {
+        mopidy.mixer.setMute({mute: value}).then(function () {
           resolve();
         });
       });
