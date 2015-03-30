@@ -3,6 +3,7 @@ import layout from '../templates/components/add-uri';
 
 export default Ember.Component.extend({
   layout: layout,
+  classNames: ["pull-left"],
 
   actions: {
     add: function() {

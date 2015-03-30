@@ -9,8 +9,8 @@ export default Ember.Object.extend({
     var mopidy = new Mopidy(options);
     var promise = new Promise(function (resolve, reject) {
       mopidy.on(function (ev, args) {
-        // console.log("ev" + ev + " " + Ember.inspect(args));
-        // console.log(args);
+        //console.log("ev" + ev + " " + Ember.inspect(args));
+        //console.log(ev);
         if (ev === "state:online") {
           resolve(mopidy);
         }
@@ -94,6 +94,50 @@ export default Ember.Object.extend({
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
         mopidy.tracklist.add({tracks: tracks}).then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  getRepeat: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.getRepeat().then(function (result) {
+          resolve(result);
+        });
+      });
+    });
+  },
+
+  setRepeat: function (value) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.setRepeat({value: value}).then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  getRandom: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.getRandom().then(function (result) {
+          resolve(result);
+        });
+      });
+    });
+  },
+
+  setRandom: function (value) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.setRandom({value: value}).then(function () {
           resolve();
         });
       });
