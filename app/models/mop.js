@@ -144,6 +144,50 @@ export default Ember.Object.extend({
     });
   },
 
+  getSingle: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.getSingle().then(function (result) {
+          resolve(result);
+        });
+      });
+    });
+  },
+
+  setSingle: function (value) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.setSingle({value: value}).then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
+  getConsume: function () {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.getConsume().then(function (result) {
+          resolve(result);
+        });
+      });
+    });
+  },
+
+  setConsume: function (value) {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+      that.get("clientPromise").then(function (mopidy) {
+        mopidy.tracklist.setConsume({value: value}).then(function () {
+          resolve();
+        });
+      });
+    });
+  },
+
   lookup: function (uris) {
     var that = this;
     return new Promise(function (resolve, reject) {
@@ -299,12 +343,12 @@ export default Ember.Object.extend({
   },
 
   // artist, album
-  collection: function (uri) {
+  collection: function (uris) {
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.library.lookup({uri: uri}).then(function (artist) {
-          resolve(artist);
+        mopidy.library.lookup({uris: uris}).then(function (collection) {
+          resolve(collection);
         });
       });
     });
