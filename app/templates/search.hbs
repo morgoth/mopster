@@ -21,40 +21,31 @@
   <div class="col-md-2">
     <div class="panel panel-default">
       <div class="panel-heading">Artists</div>
-
-      <table class="table table-condensed">
-        <tbody>
-          {{#each artist in artists}}
-            <tr><td>{{#link-to "albums" artist.uri}}{{artist.name}}{{/link-to}}</td></tr>
-          {{/each}}
-        </tbody>
-      </table>
+      <ul class="list-group">
+        {{#each artist in artists}}
+          <li class="list-group-item">{{#link-to "albums" artist.uri}}{{artist.name}}{{/link-to}}</li>
+        {{/each}}
+      </ul>
     </div>
   </div>
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">Albums</div>
-
-      <table class="table table-condensed">
-        <tbody>
-          {{#each album in albums}}
-            <tr><td>{{#link-to "albums" album.uri}}{{album.artists.0.name}} - {{album.name}}{{/link-to}}</td></tr>
-          {{/each}}
-        </tbody>
-      </table>
+      <ul class="list-group">
+        {{#each album in albums}}
+          <li class="list-group-item">{{#link-to "albums" album.uri}}{{album.artists.0.name}} - {{album.name}}{{/link-to}}</li>
+        {{/each}}
+      </ul>
     </div>
   </div>
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">Tracks</div>
-
-      <table class="table table-condensed">
-        <tbody>
-          {{#each track in tracks}}
-            <tr><td>{{#link-to "albums" track.uri}}{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}{{/link-to}}</td></tr>
-          {{/each}}
-        </tbody>
-      </table>
+      <ul class="list-group">
+        {{#each track in tracks}}
+          <li class="list-group-item">{{#link-to "albums" track.uri}}{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}{{/link-to}}</li>
+        {{/each}}
+      </ul>
     </div>
   </div>
 </div>

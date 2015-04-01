@@ -4,8 +4,7 @@ export default Ember.Controller.extend({
   queryParams: ["query"],
 
   assignModel: function () {
-    var result = this.get("model"),
-        query = this.get("query").toLowerCase();
+    var result = this.get("model");
 
     this.set("sourceTypes", result.mapBy("uri"));
     this.set("sourceType", this.get("sourceTypes")[0]);

@@ -10,7 +10,7 @@ Router.map(function () {
   this.route("search", {path: "/search"});
   this.route("queue", {path: "/queue"});
   this.route("browse", {path: "/browse/*uri"});
-  this.resource("albums", {path: "/collection/:uri/albums"});
+  this.route("albums", {path: "/collection/:uri/albums"});
 });
 
 export default Router;

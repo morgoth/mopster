@@ -4,7 +4,7 @@ import Ember from "ember";
 export default Ember.Object.extend({
   configure: function () {
     var options = {callingConvention: "by-position-or-by-name"};
-    options.webSocketUrl = "ws://" + this.get("serverURL") + ":6680/mopidy/ws/"
+    options.webSocketUrl = "ws://" + this.get("serverURL") + ":6680/mopidy/ws/";
 
     var mopidy = new Mopidy(options);
     var promise = new Promise(function (resolve, reject) {

@@ -1,5 +1,4 @@
 import Mop from "../models/mop";
-import config from "mopster/config/environment";
 
 export function initialize(container, application) {
   var mop = Mop.create();

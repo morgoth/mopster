@@ -9,12 +9,12 @@ export default Ember.Controller.extend({
         if (a.album.name === b.album.name) {
           return a.track_no - b.track_no;
         } else {
-          return a.album.name > b.album.name ? 1 : -1
+          return a.album.name > b.album.name ? 1 : -1;
         }
       } else {
         return date;
       }
-    }
+    };
 
     var groupedModel = this.get("model").reduce(function (grouped, item) {
       if (grouped[item.album.name]) {
@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
     groupedModel = Ember.keys(groupedModel).reduce(function (sorted, key) {
       sorted.push(groupedModel[key].sort(sortableFunction));
       return sorted;
-    }, [])
+    }, []);
 
     this.set("albums", groupedModel.reverse());
   }.observes("model"),

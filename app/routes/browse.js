@@ -7,8 +7,7 @@ export default AuthorizedRoute.extend({
     if (uri === "root") {
       uri = null;
     } else {
-      // Avoid differences when passing param through route and taken from url on refresh
-      uri = encodeURI(decodeURI(uri));
+      uri = atob(uri);
     }
 
     return this.get("mop").browse(uri);

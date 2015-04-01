@@ -6,16 +6,15 @@
     {{view.item.name}}
   </td>
   <td>
-    <button class="btn btn-default btn-xs" {{action "add" view.item.uri}}>Add to queue</button>
+    <button class="btn btn-default btn-xs" {{action "add" view.encodedId}}>Add to queue</button>
   </td>
-{{/if}}
 
-{{#if view.isDirectory}}
+{{else if view.isDirectory}}
   <td>
     <span class="glyphicon glyphicon-folder-open"></span>
   </td>
   <td>
-    {{#link-to "browse" view.item.uri}}{{view.item.name}}{{/link-to}}
+    {{#link-to "browse" view.encodedId}}{{view.item.name}}{{/link-to}}
   </td>
   <td>
   </td>
