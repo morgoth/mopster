@@ -17,8 +17,9 @@ export default Ember.Component.extend({
       // Target milliseconds between callbacks, default: 100, min: 10.
       updateRate: 1000,
       // Force the use of the legacy setTimeout fallback, default: false.
-      disableRequestAnimationFrame: false
-    })
+      // Fixes issue with getting out of sync on inactive tab
+      disableRequestAnimationFrame: true
+    });
 
     this.set("timer", timer);
 
