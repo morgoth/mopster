@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   classNames: ["nav", "navbar-nav", "navbar-right", "navbar-form"],
 
   setup: function () {
-    this.get("mop").volume().then( (volume) => {
+    this.get("mop").getVolume().then( (volume) => {
       this.set("volume", volume);
     });
 

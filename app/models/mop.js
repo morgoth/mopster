@@ -21,12 +21,14 @@ export default Ember.Object.extend({
     this.set("clientPromise", promise);
   }.observes("serverURL"),
 
-  search: function (query) {
+  wrap: function (lib, func, args = undefined) {
     var that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        mopidy.library.search({any: [query]}).then(function (tracks) {
-          resolve(tracks);
+        var callable = mopidy[lib][func];
+
+        (args === undefined ? callable() : callable(args)).then(function (result) {
+          resolve(result);
         }, function (rejection) {
           reject(rejection.data.message);
         });
@@ -34,323 +36,131 @@ export default Ember.Object.extend({
     });
   },
 
-  trackList: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.getTlTracks().then(function (tracks) {
-          resolve(tracks);
-        });
-      });
-    });
-  },
-
+  // playback
   currentTrack: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.getCurrentTlTrack().then(function (track) {
-          resolve(track);
-        });
-      });
-    });
+    return this.wrap("playback", "getCurrentTlTrack");
   },
 
   playTrack: function (track) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.play({tl_track: track}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
-  removeTracks: function (ids) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.remove({tlid: ids}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
-  addURI: function (uri) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.add({uri: uri}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
-  addTracks: function (tracks) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.add({tracks: tracks}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
-  getRepeat: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.getRepeat().then(function (result) {
-          resolve(result);
-        });
-      });
-    });
-  },
-
-  setRepeat: function (value) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.setRepeat({value: value}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
-  getRandom: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.getRandom().then(function (result) {
-          resolve(result);
-        });
-      });
-    });
-  },
-
-  setRandom: function (value) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.setRandom({value: value}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
-  getSingle: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.getSingle().then(function (result) {
-          resolve(result);
-        });
-      });
-    });
-  },
-
-  setSingle: function (value) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.setSingle({value: value}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
-  getConsume: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.getConsume().then(function (result) {
-          resolve(result);
-        });
-      });
-    });
-  },
-
-  setConsume: function (value) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.tracklist.setConsume({value: value}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
-  lookup: function (uris) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.library.lookup({uris: uris}).then(function (result) {
-          resolve(result);
-        });
-      });
-    });
+    return this.wrap("playback", "play", {tl_track: track});
   },
 
   previous: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.previous().then(function () {
-          resolve();
-        });
-      });
-    });
+    return this.wrap("playback", "previous");
   },
 
   next: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.next().then(function () {
-          resolve();
-        });
-      });
-    });
+    return this.wrap("playback", "next");
   },
 
   play: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.play().then(function () {
-          resolve();
-        });
-      });
-    });
+    return this.wrap("playback", "play");
   },
 
   pause: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.pause().then(function () {
-          resolve();
-        });
-      });
-    });
+    return this.wrap("playback", "pause");
   },
 
   stop: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.stop().then(function () {
-          resolve();
-        });
-      });
-    });
+    return this.wrap("playback", "stop");
   },
 
   state: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.getState().then(function (state) {
-          resolve(state);
-        });
-      });
-    });
-  },
-
-  volume: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.mixer.getVolume().then(function (volume) {
-          resolve(volume);
-        });
-      });
-    });
-  },
-
-  setVolume: function (volume) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.mixer.setVolume({volume: parseInt(volume)}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
-  getMute: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.mixer.getMute().then(function (value) {
-          resolve(value);
-        });
-      });
-    });
-  },
-
-  setMute: function (value) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.mixer.setMute({mute: value}).then(function () {
-          resolve();
-        });
-      });
-    });
-  },
-
-  browse: function (uri) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.library.browse({uri: uri}).then(function (result) {
-          resolve(result);
-        });
-      });
-    });
+    return this.wrap("playback", "getState");
   },
 
   time: function () {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.getTimePosition().then(function (result) {
-          resolve(result);
-        });
-      });
-    });
+    return this.wrap("playback", "getTimePosition");
+  },
+
+
+
+  // library
+  search: function (query) {
+    return this.wrap("library", "search", {any: [query]});
+  },
+
+  lookup: function (uris) {
+    return this.wrap("library", "lookup", {uris: uris});
+  },
+
+  browse: function (uri) {
+    return this.wrap("library", "browse", {uri: uri});
   },
 
   seek: function (timePosition) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.playback.seek({time_position: timePosition}).then(function (result) {
-          resolve(result);
-        });
-      });
-    });
+    return this.wrap("library", "seek", {time_position: timePosition});
   },
 
-  // artist, album
   collection: function (uris) {
-    var that = this;
-    return new Promise(function (resolve, reject) {
-      that.get("clientPromise").then(function (mopidy) {
-        mopidy.library.lookup({uris: uris}).then(function (collection) {
-          resolve(collection);
-        });
-      });
-    });
+    return this.wrap("library", "lookup", {uris: uris});
+  },
+
+
+  // tracklist
+  trackList: function () {
+    return this.wrap("tracklist", "getTlTracks");
+  },
+
+  removeTracks: function (ids) {
+    return this.wrap("tracklist", "remove", {tlid: ids});
+  },
+
+  addURI: function (uri) {
+    return this.wrap("tracklist", "add", {uri: uri});
+  },
+
+  addTracks: function (tracks) {
+    return this.wrap("tracklist", "add", {tracks: tracks});
+  },
+
+  getRepeat: function () {
+    return this.wrap("tracklist", "getRepeat");
+  },
+
+  setRepeat: function (value) {
+    return this.wrap("tracklist", "setRepeat", {value: value});
+  },
+
+  getRandom: function () {
+    return this.wrap("tracklist", "getRandom");
+  },
+
+  setRandom: function (value) {
+    return this.wrap("tracklist", "setRandom", {value: value});
+  },
+
+  getSingle: function () {
+    return this.wrap("tracklist", "getSingle");
+  },
+
+  setSingle: function (value) {
+    return this.wrap("tracklist", "setSingle", {value: value});
+  },
+
+  getConsume: function () {
+    return this.wrap("tracklist", "getConsume");
+  },
+
+  setConsume: function (value) {
+    return this.wrap("tracklist", "setConsume", {value: value});
+  },
+
+
+  // mixer
+  getVolume: function () {
+    return this.wrap("mixer", "getVolume");
+  },
+
+  setVolume: function (volume) {
+    return this.wrap("mixer", "setVolume", {volume: parseInt(volume)});
+  },
+
+  getMute: function () {
+    return this.wrap("mixer", "getMute");
+  },
+
+  setMute: function (value) {
+    return this.wrap("mixer", "setMute", {mute: value});
   }
 });
