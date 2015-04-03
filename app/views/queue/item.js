@@ -46,7 +46,8 @@ export default Ember.View.extend({
     this.get("controller").send("selectTrack", this.get("item"), modifier);
   },
 
-  doubleClick: function () {
+  // Fires also on doubleClick
+  doubleTap: function () {
     this.get("controller").send("playTrack", this.get("item"));
   }
 });

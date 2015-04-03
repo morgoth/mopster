@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
 
     this.get("mop.client").on("event:tracklistChanged", function () {
       ctrl.get("mop").trackList().then(function (tracks) {
-        ctrl.set("model", tracks)
+        ctrl.set("model", tracks);
       });
     });
   }.on("init"),
