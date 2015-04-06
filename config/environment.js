@@ -7,7 +7,7 @@ module.exports = function(environment) {
     baseURL: '/',
     // Due to lack of fancy server configuration, only root path is available, thus
     // we need to stick with hash routing.
-    locationType: 'history',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
