@@ -3,7 +3,9 @@ import layout from '../templates/components/mute-control';
 
 export default Ember.Component.extend({
   layout: layout,
-  classNames: ["nav", "navbar-nav", "navbar-right"],
+  tagName: "button",
+  classNames: ["btn", "btn-default", "navbar-btn", "navbar-right"],
+  classNameBindings: ["isMuted:active"],
 
   setup: function () {
     this.get("mop").getMute().then( (mute) => {
@@ -15,13 +17,15 @@ export default Ember.Component.extend({
     });
   }.on("init"),
 
-  actions: {
-    mute: function () {
-      this.get("mop").setMute(true);
-    },
-
-    unmute: function () {
-      this.get("mop").setMute(false);
+  iconClassName: function () {
+    if (this.get("isMuted")) {
+      return "glyphicon-volume-off";
+    } else {
+      return "glyphicon-volume-up";
     }
+  }.property("isMuted"),
+
+  click: function () {
+    this.get("mop").setMute(!this.get("isMuted"));
   }
 });

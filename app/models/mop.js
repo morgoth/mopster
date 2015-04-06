@@ -73,6 +73,10 @@ export default Ember.Object.extend({
     return this.wrap("playback", "getTimePosition");
   },
 
+  seek: function (timePosition) {
+    return this.wrap("playback", "seek", {time_position: timePosition});
+  },
+
 
 
   // library
@@ -86,10 +90,6 @@ export default Ember.Object.extend({
 
   browse: function (uri) {
     return this.wrap("library", "browse", {uri: uri});
-  },
-
-  seek: function (timePosition) {
-    return this.wrap("library", "seek", {time_position: timePosition});
   },
 
   collection: function (uris) {
@@ -106,12 +106,8 @@ export default Ember.Object.extend({
     return this.wrap("tracklist", "remove", {tlid: ids});
   },
 
-  addURI: function (uri) {
-    return this.wrap("tracklist", "add", {uri: uri});
-  },
-
-  addTracks: function (tracks) {
-    return this.wrap("tracklist", "add", {tracks: tracks});
+  addUris: function (uris) {
+    return this.wrap("tracklist", "add", {uris: uris});
   },
 
   getRepeat: function () {

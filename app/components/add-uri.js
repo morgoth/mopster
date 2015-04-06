@@ -7,7 +7,7 @@ export default Ember.Component.extend({
 
   actions: {
     add: function() {
-      this.get("mop").addURI(this.get("url")).then( () => {
+      this.get("mop").addUris([this.get("url")]).then( () => {
         this.$("#add-url").modal("hide");
       });
     }

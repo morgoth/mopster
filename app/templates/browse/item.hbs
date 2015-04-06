@@ -6,7 +6,7 @@
     {{view.item.name}}
   </td>
   <td>
-    <button class="btn btn-default btn-xs" {{action "add" view.encodedId}}>Add to queue</button>
+    <button class="btn btn-default btn-xs" {{action "add" view.item.uri}}>Add to queue</button>
   </td>
 
 {{else if view.isDirectory}}
