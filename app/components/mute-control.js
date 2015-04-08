@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   tagName: "button",
   classNames: ["btn", "btn-default", "navbar-btn", "navbar-right"],
   classNameBindings: ["isMuted:active"],
+  attributeBindings: ["title"],
 
   setup: function () {
     this.get("mop").getMute().then( (mute) => {
@@ -22,6 +23,14 @@ export default Ember.Component.extend({
       return "glyphicon-volume-off";
     } else {
       return "glyphicon-volume-up";
+    }
+  }.property("isMuted"),
+
+  title: function () {
+    if (this.get("isMuted")) {
+      return "Mute is on";
+    } else {
+      return "Mute is off";
     }
   }.property("isMuted"),
 
