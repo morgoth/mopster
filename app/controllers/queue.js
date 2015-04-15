@@ -38,7 +38,8 @@ export default Ember.Controller.extend({
 
           rangeIndexes.push(ids.indexOf(this.get("selectedTrackIds.lastObject")));
           rangeIndexes.push(ids.lastIndexOf(track.tlid));
-          rangeIndexes = rangeIndexes.sort();
+          rangeIndexes = rangeIndexes.sort(function (a, b) { return a - b; });
+
           this.set("selectedTrackIds", ids.slice(rangeIndexes[0], rangeIndexes[1] + 1));
           break;
         case "replace":

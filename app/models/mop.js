@@ -158,5 +158,19 @@ export default Ember.Object.extend({
 
   setMute: function (value) {
     return this.wrap("mixer", "setMute", {mute: value});
+  },
+
+
+  // playlist
+  playlists: function () {
+    return this.wrap("playlists", "asList");
+  },
+
+  playlist: function (uri) {
+    return this.wrap("playlists", "getItems", {uri: uri});
+  },
+
+  refreshPlaylists: function () {
+    return this.wrap("playlists", "refresh");
   }
 });

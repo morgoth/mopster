@@ -3,7 +3,7 @@
     {{view "browse/add-all-tracks" collection=model}}
 
     <table class="table-condensed">
-      <tbody class="default-cursor">
+      <tbody>
         {{#each entry in model}}
           {{view "browse/item" item=entry}}
         {{/each}}

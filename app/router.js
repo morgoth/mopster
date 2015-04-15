@@ -11,6 +11,8 @@ Router.map(function () {
   this.route("queue", {path: "/queue"});
   this.route("browse", {path: "/browse/*uri"});
   this.route("albums", {path: "/collection/:uri/albums"});
+  this.route("playlists", {path: "/playlists"});
+  this.route("playlist", {path: "/playlists/:uri"});
 });
 
 export default Router;
