@@ -1,7 +1,6 @@
 import Ember from "ember";
 
-// TODO: simplify
-export default Ember.Object.extend({
+export default Ember.Service.extend({
   configure: function () {
     var options = {callingConvention: "by-position-or-by-name"};
     options.webSocketUrl = "ws://" + this.get("serverURL") + ":6680/mopidy/ws/";

@@ -1,12 +1,12 @@
-import Mop from "../models/mop";
+import Mop from "../services/mop";
 
 export function initialize(container, application) {
   var mop = Mop.create();
 
-  application.register("mopidy:instance", mop, {instantiate: false});
-  application.inject("controller", "mop", "mopidy:instance");
-  application.inject("route", "mop", "mopidy:instance");
-  application.inject("component", "mop", "mopidy:instance");
+  application.register("service:mopidy", mop, {instantiate: false});
+  application.inject("controller", "mop", "service:mopidy");
+  application.inject("route", "mop", "service:mopidy");
+  application.inject("component", "mop", "service:mopidy");
 }
 
 export default {
