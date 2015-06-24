@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import layout from '../templates/components/browse/item';
 
-export default Ember.View.extend({
+export default Ember.Component.extend({
   tagName: "tr",
-  templateName: "browse/item",
+  layout: layout,
 
   // Workaround for not properly escaped characters
   encodedId: function () {
@@ -15,5 +16,11 @@ export default Ember.View.extend({
 
   isDirectory: function () {
     return this.get("item.type") === "directory";
-  }.property("item")
+  }.property("item"),
+
+  actions: {
+    add: function (uri) {
+      this.sendAction("action", uri);
+    }
+  }
 });

@@ -3,7 +3,7 @@
     <button class="btn btn-default btn-xs" {{action "refresh"}}>Refresh Playlists</button>
     <table class="table-condensed">
       <tbody>
-        {{#each playlist in model}}
+        {{#each model as |playlist|}}
           <tr>
             <td>
               <span class="glyphicon glyphicon-list"></span>

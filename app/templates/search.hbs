@@ -12,8 +12,8 @@
 </form>
 
 <ul class="nav nav-pills gap">
-  {{#each type in sourceTypes}}
-    {{view "search/source-type" sourceType=type}}
+  {{#each sourceTypes as |type|}}
+    {{search-source-type sourceType=type selectedSourceType=sourceType action="filterBy"}}
   {{/each}}
 </ul>
 
@@ -22,7 +22,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Artists</div>
       <ul class="list-group">
-        {{#each artist in artists}}
+        {{#each artists as |artist|}}
           <li class="list-group-item">{{#link-to "albums" artist.uri}}{{artist.name}}{{/link-to}}</li>
         {{/each}}
       </ul>
@@ -32,7 +32,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Albums</div>
       <ul class="list-group">
-        {{#each album in albums}}
+        {{#each albums as |album|}}
           <li class="list-group-item">{{#link-to "albums" album.uri}}{{album.artists.0.name}} - {{album.name}}{{/link-to}}</li>
         {{/each}}
       </ul>
@@ -42,7 +42,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">Tracks</div>
       <ul class="list-group">
-        {{#each track in tracks}}
+        {{#each tracks as |track|}}
           <li class="list-group-item">{{#link-to "albums" track.uri}}{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}{{/link-to}}</li>
         {{/each}}
       </ul>

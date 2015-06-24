@@ -1,11 +1,10 @@
 import Ember from 'ember';
+import layout from '../templates/components/consume-mode';
 
 export default Ember.Component.extend({
   tagName: "button",
   attributeBindings: ["title"],
-  layout: function () {
-    return "<span class='glyphicon glyphicon-cutlery'></span>";
-  },
+  layout: layout,
   classNames: ["pull-right btn btn-default"],
   classNameBindings: ["consume:active"],
 

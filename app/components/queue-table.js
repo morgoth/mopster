@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import layout from '../templates/components/queue/table';
 
-export default Ember.View.extend({
+export default Ember.Component.extend({
   tagName: "table",
-  templateName: "queue/table",
+  layout: layout,
   classNames: ["table", "table-bordered", "table-condensed", "queue-table"],
 
   setFocus: function() {
@@ -12,7 +13,17 @@ export default Ember.View.extend({
 
   keyPress: function(e) {
     if ([127, 46].contains(e.keyCode)) {// Delete
-      this.get("controller").send("removeSelectedTracks");
+      this.sendAction();
+    }
+  },
+
+  actions: {
+    selectTrack: function (item, modifier) {
+      this.sendAction("selectTrack", item, modifier);
+    },
+
+    playTrack: function (item) {
+      this.sendAction("playTrack", item);
     }
   }
 });

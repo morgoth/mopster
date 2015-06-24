@@ -1,8 +1,9 @@
 import Ember from 'ember';
+import layout from '../templates/components/browse/add-all-tracks';
 
-export default Ember.View.extend({
+export default Ember.Component.extend({
   tagName: "button",
-  templateName: "browse/add-all-tracks",
+  layout: layout,
   classNames: ["btn", "btn-default"],
   classNameBindings: ["isVisible::hidden"],
 
@@ -11,6 +12,6 @@ export default Ember.View.extend({
   }.property("collection"),
 
   click: function () {
-    this.get("controller").send("addTracks", this.get("collection").filterBy("type", "track"));
+    this.sendAction("action", this.get("collection").filterBy("type", "track"));
   }
 });

@@ -3,7 +3,7 @@
 {{single-mode}}
 {{repeat-mode}}
 {{random-mode}}
-{{view "queue/table"}}
+{{queue-table tracks=model selectedTrackIds=selectedTrackIds currentTrack=currentTrack selectTrack="selectTrack" playTrack="playTrack" action="removeSelectedTracks"}}
 <div class="text-muted">
   Change track with double click. Select multiple tracks with Ctrl or Shift. Delete selected tracks by pressing Del.
 </div>

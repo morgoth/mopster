@@ -1,0 +1,21 @@
+{{#if isTrack}}
+  <td>
+    <span class="glyphicon glyphicon-music"></span>
+  </td>
+  <td>
+    {{item.name}}
+  </td>
+  <td>
+    <button class="btn btn-default btn-xs" {{action "add" item.uri}}>Add to queue</button>
+  </td>
+
+{{else if isDirectory}}
+  <td>
+    <span class="glyphicon glyphicon-folder-open"></span>
+  </td>
+  <td>
+    {{#link-to "browse" encodedId}}{{item.name}}{{/link-to}}
+  </td>
+  <td>
+  </td>
+{{/if}}

@@ -7,7 +7,7 @@
   </tr>
 </thead>
 <tbody class="default-cursor">
-  {{#each track in model}}
-    {{view "queue/item" item=track}}
+  {{#each tracks as |track|}}
+    {{queue-item selectedTrackIds=selectedTrackIds currentTrack=currentTrack item=track selectTrack="selectTrack" playTrack="playTrack"}}
   {{/each}}
 </tbody>

@@ -1,4 +1,4 @@
-{{#each album in albums}}
+{{#each albums as |album|}}
   <div class="panel panel-default">
     <div class="panel-heading">
       {{#link-to "albums" album.0.album.uri}} {{album.0.artists.0.name}} - {{album.0.album.name}} - {{album.0.date}}{{/link-to}}
@@ -6,7 +6,7 @@
     </div>
     <table class="table table-condensed">
       <tbody>
-        {{#each track in album}}
+        {{#each album as |track|}}
           <tr>
             <td class="center col-md-1">{{track.track_no}}</td>
             <td class="col-md-4">{{track.name}}</td>

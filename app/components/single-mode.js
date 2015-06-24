@@ -1,11 +1,10 @@
 import Ember from 'ember';
+import layout from '../templates/components/single-mode';
 
 export default Ember.Component.extend({
   tagName: "button",
   attributeBindings: ["title"],
-  layout: function () {
-    return "<span class='glyphicon glyphicon-pushpin'></span>";
-  },
+  layout: layout,
   classNames: ["pull-right btn btn-default"],
   classNameBindings: ["single:active"],
 

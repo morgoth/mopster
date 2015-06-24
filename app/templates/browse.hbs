@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-md-12">
-    {{view "browse/add-all-tracks" collection=model}}
+    {{browse-add-all-tracks collection=model action="addTracks"}}
 
     <table class="table-condensed">
       <tbody>
-        {{#each entry in model}}
-          {{view "browse/item" item=entry}}
+        {{#each model as |entry|}}
+          {{browse-item item=entry action="add"}}
         {{/each}}
       </tbody>
     </table>

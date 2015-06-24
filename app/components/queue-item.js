@@ -1,13 +1,14 @@
 import Ember from 'ember';
+import layout from '../templates/components/queue/item';
 
-export default Ember.View.extend({
+export default Ember.Component.extend({
   tagName: "tr",
-  templateName: "queue/item",
+  layout: layout,
   classNameBindings: ["statusClassName"],
 
   statusClassName: function () {
-    var isCurrent = (this.get("controller.currentTrack.tlid") === this.get("item.tlid")),
-        isSelected = this.get("controller.selectedTrackIds").contains(this.get("item.tlid"));
+    var isCurrent = (this.get("currentTrack.tlid") === this.get("item.tlid")),
+        isSelected = this.get("selectedTrackIds").contains(this.get("item.tlid"));
 
     if (isCurrent && isSelected) {
       return "success-info";
@@ -16,7 +17,7 @@ export default Ember.View.extend({
     } else if (isCurrent) {
       return "success";
     }
-  }.property("controller.currentTrack.tlid", "controller.selectedTrackIds.@each"),
+  }.property("currentTrack.tlid", "selectedTrackIds.@each"),
 
   trackNumber: function () {
     return this.get("item.track.track_no");
@@ -43,11 +44,11 @@ export default Ember.View.extend({
     } else {
       modifier = "replace";
     }
-    this.get("controller").send("selectTrack", this.get("item"), modifier);
+    this.sendAction("selectTrack", this.get("item"), modifier);
   },
 
   // Fires also on doubleClick
   doubleTap: function () {
-    this.get("controller").send("playTrack", this.get("item"));
+    this.sendAction("playTrack", this.get("item"));
   }
 });
