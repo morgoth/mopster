@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
       return grouped;
     }, {});
 
-    groupedModel = Ember.keys(groupedModel).reduce(function (sorted, key) {
+    groupedModel = Object.keys(groupedModel).reduce(function (sorted, key) {
       sorted.push(groupedModel[key].sort(sortableFunction));
       return sorted;
     }, []);
