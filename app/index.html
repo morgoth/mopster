@@ -15,17 +15,18 @@
 
     {{content-for 'head-footer'}}
   </head>
-  <body>
+  <body class="site">
     {{content-for 'body'}}
+    <main id="app" class="site-content"></main>
+
+    <footer class="footer">
+      {{content-for 'body-footer'}}
+      <div class="container">
+        <div class="footer-item text-muted">Source available on <a href="https://github.com/cowbell/mopster">GitHub</a></div>
+      </div>
+    </footer>
 
     <script src="assets/vendor.js"></script>
     <script src="assets/mopster.js"></script>
-
-    {{content-for 'body-footer'}}
   </body>
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-item text-muted">Source available on <a href="https://github.com/cowbell/mopster">GitHub</a></div>
-    </div>
-  </footer>
 </html>

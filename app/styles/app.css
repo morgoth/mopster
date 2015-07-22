@@ -42,24 +42,20 @@ ul.nav li .active {
   stroke-width: 5;
 }
 
-.footer-item {
-  margin: 10px 0;
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+.site-content {
+  flex: 1;
 }
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
   background-color: #f5f5f5;
+}
+
+.footer-item {
+  margin: 10px 0;
 }
