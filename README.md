@@ -19,6 +19,19 @@ Point your Mopidy config to repository path.
 
 To update client, go to repository path and run `git pull origin gh-pages`
 
+## Developing
+
+This project is built on the ember.js framework and uses npm and bower to fetch
+and resolve depedencies. Run these commands to get started developing.
+
+```
+$ [sudo] npm install
+$ bower install
+$ ember serve
+```
+
+This will build the project and serve it on <http://localhost:4200/>
+
 ## Support
 
 Tested with Mopidy v1.0 and [mopidy-gmusic v1.0](https://github.com/hechtus/mopidy-gmusic)
