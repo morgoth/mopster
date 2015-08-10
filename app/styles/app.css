@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+#add-url table {
+  width: 100%;
+}
+
+#add-url table td:last-child {
+  text-align: right;
+}
+
 ul.nav li .active {
   font-weight: bold;
 }
