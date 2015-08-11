@@ -38,9 +38,13 @@
   {{outlet}}
 </div>
 
-<footer>
-{{playback-control}}
-{{volume-control}}
-{{mute-control}}
-{{track-progress}}
+<footer class="footer">
+  <div class="container">
+    {{track-progress}}
+    <div class="playback-controls">
+      {{playback-control}}
+      {{volume-control}}
+    </div>
+  </div>
 </footer>
+

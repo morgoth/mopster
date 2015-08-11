@@ -3,7 +3,7 @@ import layout from '../templates/components/track-progress';
 
 export default Ember.Component.extend({
   layout: layout,
-
+  classNames: ['clearfix'],
   setup: function () {
     var that = this,
         mop = this.get("mop"),
@@ -11,15 +11,17 @@ export default Ember.Component.extend({
 
     timer = new ProgressTimer({
       callback: function (position, duration) {
-        that.set("progress", position / duration * 100);
+        that.set("percentage", position / duration * 100);
+        that.set("currentTime", position)
       },
+
       // Target milliseconds between callbacks, default: 100, min: 10.
       updateRate: 1000,
+
       // Force the use of the legacy setTimeout fallback, default: false.
       // Fixes issue with getting out of sync on inactive tab
       disableRequestAnimationFrame: true
     });
-
     this.set("timer", timer);
 
     // TODO: simplify
@@ -72,10 +74,25 @@ export default Ember.Component.extend({
     return this.get("currentTrack.track.length");
   }.property("currentTrack"),
 
-  mouseUp: function () {
-    if (!this.get("isDisabled")) {
-      var timePosition = Math.round(this.get("progress") * this.get("duration") / 100);
-      this.get("mop").seek(timePosition);
+  actions: {
+    post: function () {
+      if (!this.get("isDisabled")) {
+        var timePosition = Math.round(this.get("percentage") * this.get("duration") / 100);
+        this.get("mop").seek(timePosition);
+
+        if (this.get("wasRunning"))
+          this.get("timer").start()
+      }
+    },
+
+    pre: function() {
+      var timer = this.get("timer")
+      if (timer._running)
+        this.set("wasRunning", true)
+      else
+        this.set("wasRunning", false)
+
+      timer.stop()
     }
   }
 });

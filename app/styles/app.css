@@ -27,6 +27,52 @@ header > div > button {
   margin-bottom: 8px;
 }
 
+.volume-control {
+  display: flex;
+}
+
+.volume-control > .slider-control {
+  width: 100%;
+}
+
+.volume-control > button {
+  margin-right: 0.5em;
+}
+
+.playback-controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+.playback-controls > .volume-control {
+  width: 50%;
+}
+
+.slider-control {
+  margin: 0.5em 0;
+}
+
+.slider-control > div {
+  height: 1em;
+  position: relative;
+  background: #FAFAFA;
+  margin: 0.25em 0;
+}
+
+.slider-control > div > .active-segment {
+  position: absolute;
+  height: 100%;
+  background-color: #e5e5e5;
+}
+
+.slider-control > div > .handle {
+  position: absolute;
+  height: 1.5em;
+  top: -0.25em;
+  width: 0.5em;
+  background-color: #008CBA;
+}
+
 .default-cursor {
   cursor: default;
 }
@@ -58,18 +104,22 @@ header > div > button {
   stroke-width: 5;
 }
 
-.site {
+main#app > div.ember-view {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
-.site-content {
+main#app > div.ember-view > .container {
   flex: 1;
 }
 
 .footer {
   background-color: #f5f5f5;
+}
+
+footer.footer > .container {
+  margin: 0.75em auto;
 }
 
 .footer-item {
