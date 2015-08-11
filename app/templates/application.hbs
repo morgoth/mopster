@@ -29,10 +29,6 @@
           {{#link-to "queue"}}Playlists{{/link-to}}
         {{/link-to}}
       </ul>
-      {{playback-control}}
-      {{volume-control}}
-      {{mute-control}}
-      {{track-progress}}
     </div>
   </div>
 </nav>
@@ -41,3 +37,10 @@
 <div class="container">
   {{outlet}}
 </div>
+
+<footer>
+{{playback-control}}
+{{volume-control}}
+{{mute-control}}
+{{track-progress}}
+</footer>

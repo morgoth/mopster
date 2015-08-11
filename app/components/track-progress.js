@@ -3,7 +3,6 @@ import layout from '../templates/components/track-progress';
 
 export default Ember.Component.extend({
   layout: layout,
-  classNames: ["nav", "navbar-nav", "navbar-right", "navbar-form"],
 
   setup: function () {
     var that = this,

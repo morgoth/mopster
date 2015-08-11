@@ -3,7 +3,6 @@ import layout from '../templates/components/volume-control';
 
 export default Ember.Component.extend({
   layout: layout,
-  classNames: ["nav", "navbar-nav", "navbar-right", "navbar-form"],
 
   setup: function () {
     this.get("mop").getVolume().then( (volume) => {
