@@ -29,10 +29,11 @@ header > div > button {
 
 .volume-control {
   display: flex;
+  justify-content: flex-end;
 }
 
 .volume-control > .slider-control {
-  width: 100%;
+  width: 50%;
 }
 
 .volume-control > button {
@@ -42,6 +43,14 @@ header > div > button {
 .playback-controls {
   display: flex;
   justify-content: space-between;
+}
+
+.playback-controls > div {
+  flex: 1;
+}
+
+.playback-controls > .playback-control {
+  text-align: center;
 }
 
 .playback-controls > .volume-control {
