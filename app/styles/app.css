@@ -72,6 +72,11 @@ header > div > button {
   position: absolute;
   height: 100%;
   background-color: #e5e5e5;
+  transition: width 0.1s;
+}
+
+.slider-control > div:hover > .handle, .slider-control.dragging .handle {
+  transform: scale(1);
 }
 
 .slider-control > div > .handle {
@@ -80,6 +85,8 @@ header > div > button {
   top: -0.25em;
   width: 0.5em;
   background-color: #008CBA;
+  transform: scaleX(0.1) scaleY(calc(1 / 1.5));
+  transition: transform 0.1s, left 0.1s;
 }
 
 .default-cursor {

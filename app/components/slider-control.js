@@ -4,6 +4,7 @@ import layout from '../templates/components/slider-control';
 export default Ember.Component.extend({
   layout: layout,
   classNames: ['slider-control'],
+  classNameBindings: ['isMouseDown:dragging'],
   percentage: 0,
 
   setupExternalListeners: function() {
