@@ -26,9 +26,11 @@ export default Ember.Component.extend({
 
   // Default Ember Events
   mouseDown: function(e) {
-    this.sendAction('pre');
-    this.set("isMouseDown", true);
-    e.preventDefault();
+    if (e.which === 1) {
+      this.sendAction('pre');
+      this.set("isMouseDown", true);
+      e.preventDefault();
+    }
   },
 
   // Custom events so we get all moves
