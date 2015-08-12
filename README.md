@@ -16,6 +16,12 @@ cd mopster && git checkout gh-pages
 ```
 
 Point your Mopidy config to repository path.
+In `mopidy.conf`:
+```
+[http]
+enabled = true
+static_dir = /path/to/repository/with/mopster
+```
 
 To update client, go to repository path and run `git pull origin gh-pages`
 
