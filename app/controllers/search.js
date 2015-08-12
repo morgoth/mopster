@@ -25,19 +25,33 @@ export default Ember.Controller.extend({
     this.set("artists", lev.sortBy("distance").mapBy("item"));
   }.observes("modelByType"),
 
+  wait: 1000,
   actions: {
+    // A debounced search function so searches which are triggered in rapid
+    // sucession are prevented.
     search: function () {
-      this.set("errorMessage", null);
-      this.set("isSearching", true);
-      var ctrl = this;
+      // If a last search was pending to be sent to the server cancel it.
+      clearTimeout(this.get("timeout"))
 
-      this.get("mop").search(this.get("query")).then(function (result) {
-        ctrl.set("isSearching", false);
-        ctrl.set("model", result);
-      }, function (rejection) {
-        ctrl.set("isSearching", false);
-        ctrl.set("errorMessage", rejection);
-      });
+      // Set a search as pending to be run once typing has stopped. This timeout
+      // will only execute if it isn't cancled after this.wait seconds.
+      var timer = setTimeout(function(that) {
+        var query = that.get("query")
+        that.set("errorMessage", null);
+        that.set("isSearching", true);
+        var ctrl = that;
+
+        if (query) {
+          that.get("mop").search(query).then(function (result) {
+            ctrl.set("isSearching", false);
+            ctrl.set("model", result);
+          }, function (rejection) {
+            ctrl.set("isSearching", false);
+            ctrl.set("errorMessage", rejection);
+          });
+        }
+      }, this.wait, this);
+      this.set("timeout", timer)
     },
 
     filterBy: function (sourceType) {
