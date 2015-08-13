@@ -17,7 +17,7 @@ export default Ember.Component.extend({
     } else if (isCurrent) {
       return "success";
     }
-  }.property("currentTrack.tlid", "selectedTrackIds.@each"),
+  }.property("currentTrack.tlid", "selectedTrackIds.[]"),
 
   trackNumber: function () {
     return this.get("item.track.track_no");
