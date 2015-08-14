@@ -120,14 +120,8 @@ header > div > button {
   stroke-width: 5;
 }
 
-main#app > div.ember-view {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
 main#app > div.ember-view > .container {
-  flex: 1;
+  margin-bottom: 10em;
 }
 
 .footer {
