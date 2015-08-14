@@ -2,7 +2,7 @@
   <div class="alert alert-danger">{{errorMessage}}</div>
 {{/if}}
 
-{{input value=query placeholder='Search...' class="form-control" key-press='search'}}
+{{focus-input value=query placeholder='Search...' class="form-control" keyPressAction="search"}}
 
 <ul class="nav nav-pills gap">
   {{#each sourceTypes as |type|}}
@@ -20,7 +20,9 @@
         {{/each}}
       </ul>
     </div>
+    {{ in-view action="loadMore" }}
   </div>
+
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">Albums</div>
@@ -30,15 +32,20 @@
         {{/each}}
       </ul>
     </div>
+    {{ in-view action="loadMore" }}
   </div>
+
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">Tracks</div>
       <ul class="list-group">
         {{#each tracks as |track|}}
-          <li class="list-group-item">{{#link-to "albums" track.uri}}{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}{{/link-to}}</li>
+          <li class="list-group-item">
+           {{#link-to "albums" track.uri}}{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}{{/link-to}}
+          </li>
         {{/each}}
       </ul>
     </div>
+    {{ in-view action="loadMore" }}
   </div>
 </div>
