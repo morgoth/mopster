@@ -2,7 +2,10 @@
   <div class="alert alert-danger">{{errorMessage}}</div>
 {{/if}}
 
-{{focus-input value=query placeholder='Search...' class="form-control" keyPressAction="search"}}
+<div class="search-bar">
+  {{focus-input value=query placeholder='Search...' class="form-control" keyPressAction="search"}}
+  <span class="glyphicon glyphicon-refresh {{if isSearching 'searching' ''}}"></span>
+</div>
 
 <ul class="nav nav-pills gap">
   {{#each sourceTypes as |type|}}
