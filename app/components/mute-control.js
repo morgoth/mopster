@@ -4,7 +4,7 @@ import layout from '../templates/components/mute-control';
 export default Ember.Component.extend({
   layout: layout,
   tagName: "button",
-  classNames: ["btn", "btn-default", "navbar-btn", "navbar-right"],
+  classNames: ["btn", "btn-default"],
   classNameBindings: ["isMuted:active"],
   attributeBindings: ["title"],
 

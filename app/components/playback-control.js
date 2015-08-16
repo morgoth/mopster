@@ -3,7 +3,7 @@ import layout from '../templates/components/playback-control';
 
 export default Ember.Component.extend({
   layout: layout,
-  classNames: ["nav", "navbar-nav", "navbar-right"],
+  classNames: ['playback-control'],
 
   setup: function () {
     this.get("mop").state().then( (state) => {

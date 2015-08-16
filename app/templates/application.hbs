@@ -13,15 +13,22 @@
     </div>
     <div class="collapse navbar-collapse" id="navigation">
       <ul class="nav navbar-nav">
-        <li>{{#link-to "queue"}}Queue{{/link-to}}</li>
-        <li>{{#link-to "search"}}Search{{/link-to}}</li>
-        <li>{{#link-to "browse" "root"}}Browse{{/link-to}}</li>
-        <li>{{#link-to "playlists"}}Playlists{{/link-to}}</li>
+        {{#link-to "queue" tagName="li"}}
+          {{#link-to "queue"}}Queue{{/link-to}}
+        {{/link-to}}
+
+        {{#link-to "search" tagName="li"}}
+          {{#link-to "queue"}}Search{{/link-to}}
+        {{/link-to}}
+
+        {{#link-to "browse" "root" tagName="li"}}
+          {{#link-to "queue"}}Browse{{/link-to}}
+        {{/link-to}}
+
+        {{#link-to "playlists" tagName="li"}}
+          {{#link-to "queue"}}Playlists{{/link-to}}
+        {{/link-to}}
       </ul>
-      {{playback-control}}
-      {{volume-control}}
-      {{mute-control}}
-      {{track-progress}}
     </div>
   </div>
 </nav>
@@ -30,3 +37,17 @@
 <div class="container">
   {{outlet}}
 </div>
+
+{{#unless bare}}
+<footer class="footer navbar-fixed-bottom">
+  <div class="container">
+    {{track-progress}}
+    <div class="playback-controls">
+      <div></div>
+      {{playback-control}}
+      {{volume-control}}
+    </div>
+  </div>
+</footer>
+{{/unless}}
+

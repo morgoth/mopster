@@ -3,19 +3,21 @@ import layout from '../templates/components/volume-control';
 
 export default Ember.Component.extend({
   layout: layout,
-  classNames: ["nav", "navbar-nav", "navbar-right", "navbar-form"],
-
+  classNames: ['volume-control'],
   setup: function () {
     this.get("mop").getVolume().then( (volume) => {
-      this.set("volume", volume);
+      this.set("percentage", volume);
     });
 
     this.get("mop.client").on("event:volumeChanged", (changes) => {
-      this.set("volume", changes.volume);
+      this.set("percentage", changes.volume);
     });
   }.on("init"),
 
-  mouseUp: function () {
-    this.get("mop").setVolume(this.get("volume"));
-  }
+  actions: {
+    post: function () {
+      this.get("mop").setVolume(this.get("percentage"));
+    }
+  },
 });
+

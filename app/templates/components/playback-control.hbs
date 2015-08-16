@@ -1,19 +1,19 @@
-<button class="btn btn-default navbar-btn" title="Previous" {{action "previous"}}>
+<button class="btn btn-default" title="Previous" {{action "previous"}}>
   <span class="glyphicon glyphicon-step-backward"></span>
 </button>
 
-<button title="Play" {{action "play"}} class="btn btn-default navbar-btn {{if isPlayVisible '' 'hidden'}}">
+<button title="Play" {{action "play"}} class="btn btn-default {{if isPlayVisible '' 'hidden'}}">
   <span class="glyphicon glyphicon-play"></span>
 </button>
 
-<button title="Pause" {{action "pause"}} class="btn btn-default navbar-btn {{if isPauseVisible '' 'hidden'}}">
+<button title="Pause" {{action "pause"}} class="btn btn-default {{if isPauseVisible '' 'hidden'}}">
   <span class="glyphicon glyphicon-pause"></span>
 </button>
 
-<button class="btn btn-default navbar-btn" title="Stop" {{action "stop"}}>
+<button class="btn btn-default" title="Stop" {{action "stop"}}>
   <span class="glyphicon glyphicon-stop"></span>
 </button>
 
-<button class="btn btn-default navbar-btn" title="Next" {{action "next"}}>
+<button class="btn btn-default" title="Next" {{action "next"}}>
   <span class="glyphicon glyphicon-step-forward"></span>
 </button>
