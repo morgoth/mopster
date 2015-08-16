@@ -75,3 +75,23 @@ header > div > button {
 .footer-item {
   margin: 10px 0;
 }
+
+.album-art img {
+  width: 11em;
+  height: 11em;
+}
+
+.panel-heading > .pull-left > * {
+  display: inline-block;
+}
+
+.panel-heading .meta-data {
+  margin-left: 1em;
+}
+
+@media (max-width: 468px) {
+  .panel-heading > button {
+    width: 100%;
+    margin-top: 1em;
+  }
+}

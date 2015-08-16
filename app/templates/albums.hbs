@@ -1,8 +1,32 @@
 {{#each albums as |album|}}
   <div class="panel panel-default">
-    <div class="panel-heading">
-      {{#link-to "albums" album.0.album.uri}} {{album.0.artists.0.name}} - {{album.0.album.name}} - {{album.0.date}}{{/link-to}}
-      <button class="btn btn-default btn-sm" {{action "add" album.0.album.uri}}>Add to queue</button>
+    <div class="panel-heading clearfix">
+      <div class="pull-left">
+        {{album-art album=album.0.album}}
+        <div class="meta-data">
+          <div>{{album.0.date}}</div>
+          <div>
+          {{#if album.0.album.uri}}
+            {{#link-to "albums" album.0.album.uri}}
+              {{album.0.album.name}}
+            {{/link-to}}
+          {{else}}
+            {{album.0.album.name}}
+          {{/if}}
+          </div>
+
+          <div>
+          {{#if album.0.artists.0.uri}}
+            {{#link-to "albums" album.0.artists.0.uri}}
+              {{album.0.artists.0.name}}
+            {{/link-to}}
+          {{else}}
+            {{album.0.artists.0.name}}
+          {{/if}}
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-default btn-sm pull-right" {{action "add" album.0.album.uri}}>Add to queue</button>
     </div>
     <table class="table table-condensed">
       <tbody>
