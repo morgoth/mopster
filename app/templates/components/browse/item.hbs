@@ -1,6 +1,6 @@
 {{#if isTrack}}
   <td>
-    <span class="glyphicon glyphicon-music"></span>
+    <i class="fa fa-music"></i>
   </td>
   <td>
     {{item.name}}
@@ -11,7 +11,7 @@
 
 {{else if isDirectory}}
   <td>
-    <span class="glyphicon glyphicon-folder-open"></span>
+    <i class="fa fa-folder"></i>
   </td>
   <td>
     {{#link-to "browse" encodedId}}{{item.name}}{{/link-to}}

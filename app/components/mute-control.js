@@ -20,9 +20,9 @@ export default Ember.Component.extend({
 
   iconClassName: function () {
     if (this.get("isMuted")) {
-      return "glyphicon-volume-off";
+      return "fa-volume-off";
     } else {
-      return "glyphicon-volume-up";
+      return "fa-volume-up";
     }
   }.property("isMuted"),
 
