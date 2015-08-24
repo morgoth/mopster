@@ -2,14 +2,10 @@
   <div class="alert alert-danger">{{errorMessage}}</div>
 {{/if}}
 
-<form class="form-inline" {{action "search" on="submit"}}>
-  <div class="form-group">
-    {{focus-input value=query class="form-control" required=true}}
-  </div>
-  <button type="submit" class="btn btn-default" disabled={{isSearching}}>
-    Search <span class="glyphicon glyphicon-refresh {{if isSearching '' 'hidden'}}"></span>
-  </button>
-</form>
+<div class="search-bar">
+  {{focus-input value=query placeholder='Search...' class="form-control" keyPressAction="search"}}
+  <span class="glyphicon glyphicon-refresh {{if isSearching 'searching' ''}}"></span>
+</div>
 
 <ul class="nav nav-pills gap">
   {{#each sourceTypes as |type|}}
@@ -27,7 +23,9 @@
         {{/each}}
       </ul>
     </div>
+    {{ in-view action="loadMore" }}
   </div>
+
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">Albums</div>
@@ -37,15 +35,20 @@
         {{/each}}
       </ul>
     </div>
+    {{ in-view action="loadMore" }}
   </div>
+
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">Tracks</div>
       <ul class="list-group">
         {{#each tracks as |track|}}
-          <li class="list-group-item">{{#link-to "albums" track.uri}}{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}{{/link-to}}</li>
+          <li class="list-group-item">
+           {{#link-to "albums" track.uri}}{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}{{/link-to}}
+          </li>
         {{/each}}
       </ul>
     </div>
+    {{ in-view action="loadMore" }}
   </div>
 </div>
