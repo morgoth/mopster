@@ -2,9 +2,10 @@
   <div class="alert alert-danger">{{errorMessage}}</div>
 {{/if}}
 
+
 <div class="search-bar form-group has-feedback">
   {{focus-input value=query placeholder='Search...' class="form-control" keyPressAction="search"}}
-  <span class="glyphicon glyphicon-refresh form-control-feedback {{if isSearching 'searching' ''}}"></span>
+  <span class="form-control-feedback {{if isSearching 'searching' ''}}"><i class="fa fa-spinner fa-spin"></i></span>
 </div>
 
 <ul class="nav nav-pills gap">

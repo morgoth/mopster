@@ -49,11 +49,11 @@ export default Ember.Controller.extend({
 
           if (query) {
             that.get("mop").search(query).then(function (result) {
-              ctrl.set("isSearching", false);
               ctrl.set("model", result);
-            }, function (rejection) {
               ctrl.set("isSearching", false);
+            }, function (rejection) {
               ctrl.set("errorMessage", rejection);
+              ctrl.set("isSearching", false);
             });
           }
         }, wait, this);
