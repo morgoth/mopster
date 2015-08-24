@@ -2,9 +2,9 @@
   <div class="alert alert-danger">{{errorMessage}}</div>
 {{/if}}
 
-<div class="search-bar">
+<div class="search-bar form-group has-feedback">
   {{focus-input value=query placeholder='Search...' class="form-control" keyPressAction="search"}}
-  <span class="glyphicon glyphicon-refresh {{if isSearching 'searching' ''}}"></span>
+  <span class="glyphicon glyphicon-refresh form-control-feedback {{if isSearching 'searching' ''}}"></span>
 </div>
 
 <ul class="nav nav-pills gap">
@@ -23,7 +23,6 @@
         {{/each}}
       </ul>
     </div>
-    {{ in-view action="loadMore" }}
   </div>
 
   <div class="col-md-4">
@@ -35,7 +34,6 @@
         {{/each}}
       </ul>
     </div>
-    {{ in-view action="loadMore" }}
   </div>
 
   <div class="col-md-6">
@@ -49,6 +47,5 @@
         {{/each}}
       </ul>
     </div>
-    {{ in-view action="loadMore" }}
   </div>
 </div>

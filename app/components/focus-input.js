@@ -1,5 +1,6 @@
 import Ember from 'ember';
 
+// TODO: rename as it is not only focusing now
 export default Ember.TextField.extend({
   becomeFocused: function() {
     this.$().focus();
@@ -7,8 +8,8 @@ export default Ember.TextField.extend({
 
   // Use native listeners because they provide more data
   setupListeners: function() {
-    $(this.element).on("keypress", (e) => {
-      this.sendAction("keyPressAction", e);
+    this.$().on("keypress", (event) => {
+      this.sendAction("keyPressAction", event);
     })
   }.on("didInsertElement")
 });
