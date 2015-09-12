@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Controller.extend({
   actions: {
@@ -12,6 +12,6 @@ export default Ember.Controller.extend({
       this.get("mop").addUris(tracks.mapBy("uri")).then( () => {
         this.transitionToRoute("queue");
       });
-    }
-  }
+    },
+  },
 });

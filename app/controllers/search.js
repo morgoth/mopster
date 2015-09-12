@@ -1,10 +1,11 @@
-import Ember from 'ember';
+/* global Levenshtein */
+import Ember from "ember";
 
 export default Ember.Controller.extend({
   queryParams: ["query"],
 
   assignModel: function () {
-    var result = this.get("model");
+    const result = this.get("model");
 
     this.set("sourceTypes", result.mapBy("uri"));
     this.set("sourceType", this.get("sourceTypes")[0]);
@@ -12,14 +13,14 @@ export default Ember.Controller.extend({
   }.observes("model"),
 
   splitModel: function () {
-    var query = this.get("query").toLowerCase(),
-        modelByType = this.get("modelByType");
+    const query = this.get("query").toLowerCase();
+    const modelByType = this.get("modelByType");
 
     this.set("albums", modelByType.albums);
     this.set("tracks", modelByType.tracks);
 
     // TODO: Improve search sort algo
-    var lev = (modelByType.artists || []).reduce(function (memo, item) {
+    const lev = (modelByType.artists || []).reduce(function (memo, item) {
       memo.push({item: item, distance: new Levenshtein(query, item.name.toLowerCase()).distance});
       return memo;
     }, []);
@@ -31,7 +32,7 @@ export default Ember.Controller.extend({
   actions: {
     // A debounced search function so searches which are triggered in rapid
     // sucession are prevented.
-    search: function (event) {
+    search: (event) => {
       // If a last search was pending to be sent to the server cancel it.
       clearTimeout(this.get("timeout"));
 
@@ -39,16 +40,16 @@ export default Ember.Controller.extend({
       // will only execute if it isn't cancled after wait seconds. If enter was
       // pressed, the search is triggered instantly. If the device is mobile,
       // only run when enter is pressed.
-      var wait = (event.which === 13) ? 0 : this.get("wait");
+      const wait = (event.which === 13) ? 0 : this.get("wait");
       if (!this.isMobile || this.isMobile && wait === 0) {
-        var timer = setTimeout(function(that) {
-          var query = that.get("query")
+        const timer = setTimeout(function (that) {
+          const query = that.get("query");
           that.set("errorMessage", null);
           that.set("isSearching", true);
-          var ctrl = that;
+          const ctrl = that;
 
           if (query) {
-            that.get("mop").search(query).then(function (result) {
+            that.get("mop").search(query).then((result) => {
               ctrl.set("model", result);
               ctrl.set("isSearching", false);
             }, function (rejection) {
@@ -57,13 +58,13 @@ export default Ember.Controller.extend({
             });
           }
         }, wait, this);
-        this.set("timeout", timer)
+        this.set("timeout", timer);
       }
     },
 
-    filterBy: function (sourceType) {
+    filterBy: (sourceType) => {
       this.set("sourceType", sourceType);
       this.set("modelByType", this.get("model").findBy("uri", sourceType));
-    }
-  }
+    },
+  },
 });

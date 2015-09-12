@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/browse/add-all-tracks';
+import Ember from "ember";
+import layout from "../templates/components/browse/add-all-tracks";
 
 export default Ember.Component.extend({
   tagName: "button",
@@ -7,11 +7,11 @@ export default Ember.Component.extend({
   classNames: ["btn", "btn-default"],
   classNameBindings: ["isVisible::hidden"],
 
-  isVisible: function () {
+  isVisible: () => {
     return this.get("collection").isAny("type", "track");
   }.property("collection"),
 
-  click: function () {
+  click: () => {
     this.sendAction("action", this.get("collection").filterBy("type", "track"));
-  }
+  },
 });

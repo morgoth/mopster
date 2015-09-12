@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/search/source-type';
+import Ember from "ember";
+import layout from "../templates/components/search/source-type";
 
 export default Ember.Component.extend({
   tagName: "li",
@@ -17,5 +17,5 @@ export default Ember.Component.extend({
   click: function () {
     this.sendAction("action", this.get("sourceType"));
     return false; // Stop event propagation
-  }
+  },
 });

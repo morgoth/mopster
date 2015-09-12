@@ -1,19 +1,19 @@
-import Ember from 'ember';
-import Resolver from 'ember/resolver';
-import loadInitializers from 'ember/load-initializers';
-import config from './config/environment';
+import Ember from "ember";
+import Resolver from "ember/resolver";
+import loadInitializers from "ember/load-initializers";
+import config from "./config/environment";
 
-var App;
+let App;
 
 Ember.MODEL_FACTORY_INJECTIONS = true;
 
 App = Ember.Application.extend({
-  rootElement: '#app',
+  rootElement: "#app",
   modulePrefix: config.modulePrefix,
   Resolver: Resolver,
   customEvents: {
-    doubletap: "doubleTap"
-  }
+    doubletap: "doubleTap",
+  },
 });
 
 loadInitializers(App, config.modulePrefix);

@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/consume-mode';
+import Ember from "ember";
+import layout from "../templates/components/consume-mode";
 
 export default Ember.Component.extend({
   tagName: "button",
@@ -25,12 +25,11 @@ export default Ember.Component.extend({
   title: function () {
     if (this.get("consume")) {
       return "Consume mode is on";
-    } else {
-      return "Consume mode is off";
     }
+    return "Consume mode is off";
   }.property("consume"),
 
   click: function () {
     this.get("mop").setConsume(!this.get("consume"));
-  }
+  },
 });

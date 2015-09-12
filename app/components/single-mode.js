@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/single-mode';
+import Ember from "ember";
+import layout from "../templates/components/single-mode";
 
 export default Ember.Component.extend({
   tagName: "button",
@@ -25,12 +25,11 @@ export default Ember.Component.extend({
   title: function () {
     if (this.get("single")) {
       return "Single mode is on";
-    } else {
-      return "Single mode is off";
     }
+    return "Single mode is off";
   }.property("single"),
 
   click: function () {
     this.get("mop").setSingle(!this.get("single"));
-  }
+  },
 });

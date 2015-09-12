@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/random-mode';
+import Ember from "ember";
+import layout from "../templates/components/random-mode";
 
 export default Ember.Component.extend({
   tagName: "button",
@@ -25,12 +25,11 @@ export default Ember.Component.extend({
   title: function () {
     if (this.get("random")) {
       return "Random is on";
-    } else {
-      return "Random is off";
     }
+    return "Random is off";
   }.property("random"),
 
   click: function () {
     this.get("mop").setRandom(!this.get("random"));
-  }
+  },
 });

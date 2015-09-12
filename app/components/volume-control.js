@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/volume-control';
+import Ember from "ember";
+import layout from "../templates/components/volume-control";
 
 export default Ember.Component.extend({
   layout: layout,
@@ -17,5 +17,5 @@ export default Ember.Component.extend({
 
   mouseUp: function () {
     this.get("mop").setVolume(this.get("volume"));
-  }
+  },
 });

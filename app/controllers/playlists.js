@@ -1,19 +1,19 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Controller.extend({
-  setup: function () {
-    var ctrl = this;
+  setup: () => {
+    const ctrl = this;
 
-    this.get("mop.client").on("event:playlistsLoaded", function () {
-      ctrl.get("mop").playlists().then( function (playlists) {
+    this.get("mop.client").on("event:playlistsLoaded", () => {
+      ctrl.get("mop").playlists().then((playlists) => {
         ctrl.set("model", playlists);
       });
     });
   }.on("init"),
 
   actions: {
-    refresh: function () {
+    refresh: () => {
       this.get("mop").refreshPlaylists();
-    }
-  }
+    },
+  },
 });

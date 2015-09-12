@@ -1,14 +1,16 @@
-import Ember from 'ember';
-import layout from '../templates/components/track-progress';
+/* global ProgressTimer */
+
+import Ember from "ember";
+import layout from "../templates/components/track-progress";
 
 export default Ember.Component.extend({
   layout: layout,
   classNames: ["nav", "navbar-nav", "navbar-right", "navbar-form"],
 
   setup: function () {
-    var that = this,
-        mop = this.get("mop"),
-        timer;
+    const that = this;
+    const mop = this.get("mop");
+    let timer;
 
     timer = new ProgressTimer({
       callback: function (position, duration) {
@@ -18,7 +20,7 @@ export default Ember.Component.extend({
       updateRate: 1000,
       // Force the use of the legacy setTimeout fallback, default: false.
       // Fixes issue with getting out of sync on inactive tab
-      disableRequestAnimationFrame: true
+      disableRequestAnimationFrame: true,
     });
 
     this.set("timer", timer);
@@ -43,15 +45,16 @@ export default Ember.Component.extend({
 
     mop.client.on("event:playbackStateChanged", function (changes) {
       switch (changes.new_state) {
-        case "playing":
-          timer.start();
-          break;
-        case "paused":
-          timer.stop();
-          break;
-        case "stopped":
-          timer.reset();
-          break;
+      case "playing":
+        timer.start();
+        break;
+      case "paused":
+        timer.stop();
+        break;
+      case "stopped":
+        timer.reset();
+        break;
+      default:
       }
     });
 
@@ -75,8 +78,8 @@ export default Ember.Component.extend({
 
   mouseUp: function () {
     if (!this.get("isDisabled")) {
-      var timePosition = Math.round(this.get("progress") * this.get("duration") / 100);
+      const timePosition = Math.round(this.get("progress") * this.get("duration") / 100);
       this.get("mop").seek(timePosition);
     }
-  }
+  },
 });

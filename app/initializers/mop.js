@@ -1,7 +1,7 @@
 import Mop from "../services/mop";
 
 export function initialize(container, application) {
-  var mop = Mop.create();
+  const mop = Mop.create();
 
   application.register("service:mopidy", mop, {instantiate: false});
   application.inject("controller", "mop", "service:mopidy");
@@ -11,5 +11,5 @@ export function initialize(container, application) {
 
 export default {
   name: "mop",
-  initialize: initialize
+  initialize: initialize,
 };

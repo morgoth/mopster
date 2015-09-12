@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/browse/item';
+import Ember from "ember";
+import layout from "../templates/components/browse/item";
 
 export default Ember.Component.extend({
   tagName: "tr",
@@ -21,6 +21,6 @@ export default Ember.Component.extend({
   actions: {
     add: function (uri) {
       this.sendAction("action", uri);
-    }
-  }
+    },
+  },
 });

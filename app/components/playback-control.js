@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/playback-control';
+import Ember from "ember";
+import layout from "../templates/components/playback-control";
 
 export default Ember.Component.extend({
   layout: layout,
@@ -44,6 +44,6 @@ export default Ember.Component.extend({
 
     next: function () {
       this.get("mop").next();
-    }
-  }
+    },
+  },
 });

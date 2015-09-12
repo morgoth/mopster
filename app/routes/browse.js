@@ -1,8 +1,8 @@
-import AuthorizedRoute from './authorized';
+import AuthorizedRoute from "./authorized";
 
 export default AuthorizedRoute.extend({
   model: function (params) {
-    var uri = params.uri;
+    let uri = params.uri;
 
     if (uri === "root") {
       uri = null;
@@ -11,5 +11,5 @@ export default AuthorizedRoute.extend({
     }
 
     return this.get("mop").browse(uri);
-  }
+  },
 });

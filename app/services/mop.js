@@ -1,15 +1,17 @@
+/* global Mopidy */
+
 import Ember from "ember";
 
 export default Ember.Service.extend({
   configure: function () {
-    var options = {callingConvention: "by-position-or-by-name"};
+    const options = {callingConvention: "by-position-or-by-name"};
     options.webSocketUrl = "ws://" + this.get("serverURL") + ":6680/mopidy/ws/";
 
-    var mopidy = new Mopidy(options);
-    var promise = new Promise(function (resolve, reject) {
-      mopidy.on(function (ev, args) {
-        //console.log("ev" + ev + " " + Ember.inspect(args));
-        //console.log(ev);
+    const mopidy = new Mopidy(options);
+    const promise = new Promise(function (resolve) {
+      mopidy.on(function (ev) {
+        // console.log("ev" + ev + " " + Ember.inspect(args));
+        // console.log(ev);
         if (ev === "state:online") {
           resolve(mopidy);
         }
@@ -21,10 +23,10 @@ export default Ember.Service.extend({
   }.observes("serverURL"),
 
   wrap: function (lib, func, args = undefined) {
-    var that = this;
+    const that = this;
     return new Promise(function (resolve, reject) {
       that.get("clientPromise").then(function (mopidy) {
-        var callable = mopidy[lib][func];
+        const callable = mopidy[lib][func];
 
         (args === undefined ? callable() : callable(args)).then(function (result) {
           resolve(result);
@@ -76,8 +78,6 @@ export default Ember.Service.extend({
     return this.wrap("playback", "seek", {time_position: timePosition});
   },
 
-
-
   // library
   search: function (query) {
     return this.wrap("library", "search", {any: [query]});
@@ -94,7 +94,6 @@ export default Ember.Service.extend({
   collection: function (uris) {
     return this.wrap("library", "lookup", {uris: uris});
   },
-
 
   // tracklist
   trackList: function () {
@@ -148,7 +147,7 @@ export default Ember.Service.extend({
   },
 
   setVolume: function (volume) {
-    return this.wrap("mixer", "setVolume", {volume: parseInt(volume)});
+    return this.wrap("mixer", "setVolume", {volume: parseInt(volume, 10)});
   },
 
   getMute: function () {
@@ -171,5 +170,5 @@ export default Ember.Service.extend({
 
   refreshPlaylists: function () {
     return this.wrap("playlists", "refresh");
-  }
+  },
 });

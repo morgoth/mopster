@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/repeat-mode';
+import Ember from "ember";
+import layout from "../templates/components/repeat-mode";
 
 export default Ember.Component.extend({
   tagName: "button",
@@ -25,12 +25,11 @@ export default Ember.Component.extend({
   title: function () {
     if (this.get("repeat")) {
       return "Repeat is on";
-    } else {
-      return "Repeat is off";
     }
+    return "Repeat is off";
   }.property("repeat"),
 
   click: function () {
     this.get("mop").setRepeat(!this.get("repeat"));
-  }
+  },
 });

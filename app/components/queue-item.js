@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/queue/item';
+import Ember from "ember";
+import layout from "../templates/components/queue/item";
 
 export default Ember.Component.extend({
   tagName: "tr",
@@ -7,8 +7,8 @@ export default Ember.Component.extend({
   classNameBindings: ["statusClassName"],
 
   statusClassName: function () {
-    var isCurrent = (this.get("currentTrack.tlid") === this.get("item.tlid")),
-        isSelected = this.get("selectedTrackIds").contains(this.get("item.tlid"));
+    const isCurrent = this.get("currentTrack.tlid") === this.get("item.tlid");
+    const isSelected = this.get("selectedTrackIds").contains(this.get("item.tlid"));
 
     if (isCurrent && isSelected) {
       return "success-info";
@@ -36,7 +36,7 @@ export default Ember.Component.extend({
   }.property(),
 
   click: function (event) {
-    var modifier;
+    let modifier;
     if (event.ctrlKey) {
       modifier = "add";
     } else if (event.shiftKey) {
@@ -50,5 +50,5 @@ export default Ember.Component.extend({
   // Fires also on doubleClick
   doubleTap: function () {
     this.sendAction("playTrack", this.get("item"));
-  }
+  },
 });

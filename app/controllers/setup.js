@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Controller.extend({
   actions: {
-    save: function () {
+    save: () => {
       localStorage.setItem("serverURL", this.get("serverURL"));
       this.get("mop").set("serverURL", this.get("serverURL"));
       this.transitionToRoute("queue");
-    }
-  }
+    },
+  },
 });

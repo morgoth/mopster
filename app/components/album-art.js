@@ -1,12 +1,12 @@
-import Ember from 'ember';
-import layout from '../templates/components/album-art';
+import Ember from "ember";
+import layout from "../templates/components/album-art";
 
 export default Ember.Component.extend({
   layout: layout,
   classNames: ["album-art"],
 
-  getImage: function() {
-    let album = this.get("album");
+  getImage: () => {
+    const album = this.get("album");
     if ("images" in album && album.images.length) {
       this.set("imageURL", album.images[0]);
     } else {
@@ -15,5 +15,5 @@ export default Ember.Component.extend({
         this.set("imageURL", response.results[0].artworkUrl100);
       });
     }
-  }.on("init")
+  }.on("init"),
 });

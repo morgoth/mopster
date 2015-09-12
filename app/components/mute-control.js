@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/mute-control';
+import Ember from "ember";
+import layout from "../templates/components/mute-control";
 
 export default Ember.Component.extend({
   layout: layout,
@@ -21,20 +21,18 @@ export default Ember.Component.extend({
   iconClassName: function () {
     if (this.get("isMuted")) {
       return "fa-volume-off";
-    } else {
-      return "fa-volume-up";
     }
+    return "fa-volume-up";
   }.property("isMuted"),
 
   title: function () {
     if (this.get("isMuted")) {
       return "Mute is on";
-    } else {
-      return "Mute is off";
     }
+    return "Mute is off";
   }.property("isMuted"),
 
   click: function () {
     this.get("mop").setMute(!this.get("isMuted"));
-  }
+  },
 });

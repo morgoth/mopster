@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import layout from '../templates/components/add-uri';
+import Ember from "ember";
+import layout from "../templates/components/add-uri";
 
 export default Ember.Component.extend({
   layout: layout,
@@ -16,7 +16,7 @@ export default Ember.Component.extend({
     },
 
     remove: function (uri) {
-      let items = this.get("streamUris").without(uri);
+      const items = this.get("streamUris").without(uri);
       this.set("streamUris", items);
       localStorage.setItem("streamUris", JSON.stringify(items));
     },
@@ -36,6 +36,6 @@ export default Ember.Component.extend({
 
         this.$("#add-url").modal("hide");
       });
-    }
-  }
+    },
+  },
 });
