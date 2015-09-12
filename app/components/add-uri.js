@@ -22,7 +22,7 @@ export default Ember.Component.extend({
     },
 
     addUri: function (uri) {
-      this.get("mop").addUris([uri]).then( () => {
+      this.get("mop").addUris([uri]).then(() => {
         let items = JSON.parse(localStorage.getItem("streamUris"));
 
         if (Ember.isArray(items)) {

@@ -7,11 +7,11 @@ export default Ember.Component.extend({
   classNames: ["btn", "btn-default"],
   classNameBindings: ["isVisible::hidden"],
 
-  isVisible: () => {
+  isVisible: function () {
     return this.get("collection").isAny("type", "track");
   }.property("collection"),
 
-  click: () => {
+  click: function () {
     this.sendAction("action", this.get("collection").filterBy("type", "track"));
   },
 });

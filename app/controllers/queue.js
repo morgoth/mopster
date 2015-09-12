@@ -3,7 +3,7 @@ import Ember from "ember";
 export default Ember.Controller.extend({
   selectedTrackIds: [],
 
-  setup: () => {
+  setup: function () {
     const ctrl = this;
     this.get("mop").currentTrack().then(function (track) {
       if (track) {
@@ -49,7 +49,7 @@ export default Ember.Controller.extend({
       }
     },
 
-    removeSelectedTracks: () => {
+    removeSelectedTracks: function () {
       this.get("mop").removeTracks(this.get("selectedTrackIds"));
     },
   },

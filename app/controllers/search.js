@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
   actions: {
     // A debounced search function so searches which are triggered in rapid
     // sucession are prevented.
-    search: (event) => {
+    search: function (event) {
       // If a last search was pending to be sent to the server cancel it.
       clearTimeout(this.get("timeout"));
 
@@ -62,7 +62,7 @@ export default Ember.Controller.extend({
       }
     },
 
-    filterBy: (sourceType) => {
+    filterBy: function (sourceType) {
       this.set("sourceType", sourceType);
       this.set("modelByType", this.get("model").findBy("uri", sourceType));
     },

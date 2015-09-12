@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   layout: layout,
   classNames: ["album-art"],
 
-  getImage: () => {
+  getImage: function () {
     const album = this.get("album");
     if ("images" in album && album.images.length) {
       this.set("imageURL", album.images[0]);

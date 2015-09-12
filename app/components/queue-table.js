@@ -6,12 +6,12 @@ export default Ember.Component.extend({
   layout: layout,
   classNames: ["table", "table-bordered", "table-condensed", "queue-table"],
 
-  setFocus: () => {
+  setFocus: function () {
     // Brings the view into focus in order to capture keyUps
     this.$().attr({tabindex: 1});
   }.on("didInsertElement"),
 
-  keyPress: (e) => {
+  keyPress: function (e) {
     if ([127, 46].contains(e.keyCode)) {// Delete
       this.sendAction();
     }

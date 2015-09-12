@@ -1,7 +1,7 @@
 import Ember from "ember";
 
 export default Ember.Controller.extend({
-  setup: () => {
+  setup: function () {
     const ctrl = this;
 
     this.get("mop.client").on("event:playlistsLoaded", () => {
@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
   }.on("init"),
 
   actions: {
-    refresh: () => {
+    refresh: function () {
       this.get("mop").refreshPlaylists();
     },
   },
