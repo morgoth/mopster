@@ -1,6 +1,6 @@
 import Mop from "../services/mop";
 
-export function initialize(container, application) {
+export function initialize(application) {
   const mop = Mop.create();
 
   application.register("service:mopidy", mop, {instantiate: false});
