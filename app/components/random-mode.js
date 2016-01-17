@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   classNameBindings: ["random:active"],
 
   _refreshRandom: function () {
-    this.get("mop").getRandom().then( (random) => {
+    this.get("mop").getRandom().then((random) => {
       this.set("random", random);
     });
   },

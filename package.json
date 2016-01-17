@@ -14,13 +14,13 @@
   },
   "repository": "https://github.com/cowbell/mopster.git",
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 5.4.1"
   },
   "author": "Wojciech Wnętrzak",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
-    "ember-cli": "1.13.13",
+    "ember-cli": "1.13.14",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-babel": "^5.1.5",
     "ember-cli-dependency-checker": "^1.1.0",

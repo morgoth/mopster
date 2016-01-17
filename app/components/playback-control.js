@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   classNames: ["nav", "navbar-nav", "navbar-right"],
 
   setup: function () {
-    this.get("mop").state().then( (state) => {
+    this.get("mop").state().then((state) => {
       this.set("status", state);
     });
 

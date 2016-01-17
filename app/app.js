@@ -10,7 +10,7 @@ Ember.MODEL_FACTORY_INJECTIONS = true;
 App = Ember.Application.extend({
   rootElement: "#app",
   modulePrefix: config.modulePrefix,
-  Resolver,
+  Resolver: Resolver,
   customEvents: {
     doubletap: "doubleTap",
   },

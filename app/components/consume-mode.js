@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   classNameBindings: ["consume:active"],
 
   _refreshConsume: function () {
-    this.get("mop").getConsume().then( (consume) => {
+    this.get("mop").getConsume().then((consume) => {
       this.set("consume", consume);
     });
   },

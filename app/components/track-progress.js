@@ -45,16 +45,16 @@ export default Ember.Component.extend({
 
     mop.client.on("event:playbackStateChanged", function (changes) {
       switch (changes.new_state) {
-      case "playing":
-        timer.start();
-        break;
-      case "paused":
-        timer.stop();
-        break;
-      case "stopped":
-        timer.reset();
-        break;
-      default:
+        case "playing":
+          timer.start();
+          break;
+        case "paused":
+          timer.stop();
+          break;
+        case "stopped":
+          timer.reset();
+          break;
+        default:
       }
     });
 

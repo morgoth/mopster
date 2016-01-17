@@ -19,6 +19,9 @@
       "named": "never"
     }],
     "func-names": 0,
+
+    "object-shorthand": [2, "never"],
+    "object-curly-spacing": [2, "never"],
   },
 
   "globals": {

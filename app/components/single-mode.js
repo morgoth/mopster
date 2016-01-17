@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   classNameBindings: ["single:active"],
 
   _refreshSingle: function () {
-    this.get("mop").getSingle().then( (single) => {
+    this.get("mop").getSingle().then((single) => {
       this.set("single", single);
     });
   },

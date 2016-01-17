@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   attributeBindings: ["title"],
 
   setup: function () {
-    this.get("mop").getMute().then( (mute) => {
+    this.get("mop").getMute().then((mute) => {
       this.set("isMuted", mute);
     });
 

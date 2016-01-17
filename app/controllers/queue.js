@@ -29,23 +29,23 @@ export default Ember.Controller.extend({
 
     selectTrack: function (track, modifier) {
       switch (modifier) {
-      case "add":
-        this.get("selectedTrackIds").pushObject(track.tlid);
-        break;
-      case "addFromPrevious":
-        let rangeIndexes = [];
-        const ids = this.get("model").mapBy("tlid");
+        case "add":
+          this.get("selectedTrackIds").pushObject(track.tlid);
+          break;
+        case "addFromPrevious":
+          let rangeIndexes = [];
+          const ids = this.get("model").mapBy("tlid");
 
-        rangeIndexes.push(ids.indexOf(this.get("selectedTrackIds.lastObject")));
-        rangeIndexes.push(ids.lastIndexOf(track.tlid));
-        rangeIndexes = rangeIndexes.sort(function (a, b) { return a - b; });
+          rangeIndexes.push(ids.indexOf(this.get("selectedTrackIds.lastObject")));
+          rangeIndexes.push(ids.lastIndexOf(track.tlid));
+          rangeIndexes = rangeIndexes.sort(function (a, b) { return a - b; });
 
-        this.set("selectedTrackIds", ids.slice(rangeIndexes[0], rangeIndexes[1] + 1));
-        break;
-      case "replace":
-        this.set("selectedTrackIds", [track.tlid]);
-        break;
-      default:
+          this.set("selectedTrackIds", ids.slice(rangeIndexes[0], rangeIndexes[1] + 1));
+          break;
+        case "replace":
+          this.set("selectedTrackIds", [track.tlid]);
+          break;
+        default:
       }
     },
 

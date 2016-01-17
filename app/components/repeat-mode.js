@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   classNameBindings: ["repeat:active"],
 
   _refreshRepeat: function () {
-    this.get("mop").getRepeat().then( (repeat) => {
+    this.get("mop").getRepeat().then((repeat) => {
       this.set("repeat", repeat);
     });
   },
