@@ -1,8 +1,8 @@
 {
   "name": "mopster",
   "dependencies": {
-    "jquery": "^2.1.3",
-    "ember": "2.2.1",
+    "jquery": "^2.2.0",
+    "ember": "2.3.0",
     "ember-resolver": "~0.1.20",
     "loader.js": "ember-cli/loader.js#3.4.0",
     "ember-cli-shims": "0.0.6",
