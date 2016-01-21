@@ -1,11 +1,24 @@
 <div class="jumbotron">
-  <h3 class="center">Provide address of server with Mopidy</h3>
+  <h3 class="center">Provide configuration for Mopidy</h3>
 
-  <form {{action "save" on="submit"}}>
+  <form {{action "save" on="submit"}} class="form-horizontal">
     <div class="form-group">
-      {{input class="form-control" value=serverURL placeholder="192.168.1.2 or localhost" required=true}}
-      <span class="help-block">Value will be stored in browser local storage for your convenience</span>
+      <label for="server-host" class="col-sm-2 control-label">Mopidy Host</label>
+      <div class="col-sm-10">
+        {{input id="server-host" class="form-control" value=serverHost placeholder="192.168.1.2 or localhost" required=true}}
+      </div>
     </div>
-    <button type="submit" class="btn btn-default">Save</button>
+    <div class="form-group">
+      <label for="server-port" class="col-sm-2 control-label">Websockets Port</label>
+      <div class="col-sm-10">
+        {{input id="server-port" class="form-control" value=serverPort placeholder="6680" required=true}}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Save</button>
+        <span class="help-block">Values will be stored in browser local storage for your convenience</span>
+      </div>
+    </div>
   </form>
 </div>

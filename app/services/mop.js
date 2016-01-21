@@ -5,7 +5,7 @@ import Ember from "ember";
 export default Ember.Service.extend({
   configure: function () {
     const options = {callingConvention: "by-position-or-by-name"};
-    options.webSocketUrl = "ws://" + this.get("serverURL") + ":6680/mopidy/ws/";
+    options.webSocketUrl = `ws://${this.get("serverHost")}:${this.get("serverPort")}/mopidy/ws/`;
 
     const mopidy = new Mopidy(options);
     const promise = new Promise(function (resolve) {
@@ -20,7 +20,7 @@ export default Ember.Service.extend({
 
     this.set("client", mopidy);
     this.set("clientPromise", promise);
-  }.observes("serverURL"),
+  }.observes("serverHost", "serverPort"),
 
   wrap: function (lib, func, args = undefined) {
     const that = this;
