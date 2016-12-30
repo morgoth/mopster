@@ -12,7 +12,7 @@ export default Ember.Component.extend({
   }.on("didInsertElement"),
 
   keyPress: function (e) {
-    if ([127, 46, 8].contains(e.keyCode)) {// delete, backspace
+    if ([127, 46, 8].includes(e.keyCode)) {// delete, backspace
       this.sendAction();
     }
   },

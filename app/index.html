@@ -10,8 +10,8 @@
     {{content-for 'head'}}
 
     <link href="/favicon.ico" rel="shortcut icon">
-    <link rel="stylesheet" href="assets/vendor.css">
-    <link rel="stylesheet" href="assets/mopster.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/mopster.css">
 
     {{content-for 'head-footer'}}
   </head>
@@ -29,7 +29,7 @@
       </div>
     </footer>
 
-    <script src="assets/vendor.js"></script>
-    <script src="assets/mopster.js"></script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/mopster.js"></script>
   </body>
 </html>

@@ -8,7 +8,7 @@ export default Ember.Component.extend({
 
   statusClassName: function () {
     const isCurrent = this.get("currentTrack.tlid") === this.get("item.tlid");
-    const isSelected = this.get("selectedTrackIds").contains(this.get("item.tlid"));
+    const isSelected = this.get("selectedTrackIds").includes(this.get("item.tlid"));
 
     if (isCurrent && isSelected) {
       return "success-info";

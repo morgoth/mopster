@@ -2,7 +2,7 @@ module.exports = (environment) => {
   const ENV = {
     modulePrefix: "mopster",
     environment: environment,
-    baseURL: "/",
+    rootURL: "/",
     // Due to lack of fancy server configuration, only root path is available, thus
     // we need to stick with hash routing.
     locationType: "hash",
@@ -29,7 +29,6 @@ module.exports = (environment) => {
 
   if (environment === "test") {
     // Testem prefers this...
-    ENV.baseURL = "/";
     ENV.locationType = "none";
 
     // keep test console output quieter
