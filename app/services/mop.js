@@ -8,10 +8,11 @@ export default Ember.Service.extend({
     options.webSocketUrl = `ws://${this.get("serverHost")}:${this.get("serverPort")}/mopidy/ws/`;
 
     const mopidy = new Mopidy(options);
+    // For debugging events:
+    // mopidy.on(console.log.bind(console));
+
     const promise = new Promise(function (resolve) {
       mopidy.on(function (ev) {
-        // console.log("ev" + ev + " " + Ember.inspect(args));
-        // console.log(ev);
         if (ev === "state:online") {
           resolve(mopidy);
         }
