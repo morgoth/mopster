@@ -81,7 +81,7 @@ export default Ember.Service.extend({
 
   // library
   search: function (query) {
-    return this.wrap("library", "search", {any: [query]});
+    return this.wrap("library", "search", {query: {any: [query]}});
   },
 
   lookup: function (uris) {

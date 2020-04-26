@@ -12,7 +12,9 @@ export default Ember.Component.extend({
     } else {
       $.getJSON(`http://itunes.apple.com/search?term=${encodeURIComponent(album.name)}&limit=1&entity=album&callback=?`)
       .done((response) => {
-        this.set("imageURL", response.results[0].artworkUrl100);
+        if (response.results[0]) {
+          this.set("imageURL", response.results[0].artworkUrl100);
+        }
       });
     }
   }.on("init"),
