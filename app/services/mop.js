@@ -102,7 +102,7 @@ export default Ember.Service.extend({
   },
 
   removeTracks: function (ids) {
-    return this.wrap("tracklist", "remove", {tlid: ids});
+    return this.wrap("tracklist", "remove", {criteria: {tlid: ids}});
   },
 
   addUris: function (uris) {

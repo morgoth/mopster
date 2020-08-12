@@ -7,7 +7,7 @@ module.exports = function(defaults) {
 
   app.import("bower_components/bootstrap/dist/css/bootstrap.css");
   app.import("bower_components/fontawesome/css/font-awesome.css");
-  app.import("bower_components/bootstrap/dist/js/bootstrap.js");
+  app.import("vendor/mopidy-1.1.0.js")
 
   app.import("bower_components/mopidy.js/dist/mopidy.js");
   app.import("bower_components/levenshtein/lib/levenshtein.js");
