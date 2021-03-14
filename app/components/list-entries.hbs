@@ -1,0 +1,20 @@
+<table class="table table-sm table-hover">
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>Title</td>
+      <td>Artist</td>
+      <td>Album</td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each @entries as |entry|}}
+      <tr>
+        <td>{{entry.track.track_no}}</td>
+        <td>{{entry.track.name}}</td>
+        <td>{{entry.track.artists.0.name}}</td>
+        <td>{{entry.track.album.name}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
