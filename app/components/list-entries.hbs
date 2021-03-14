@@ -1,5 +1,5 @@
-<table class="table table-sm table-hover">
-  <thead>
+<table class="table table-sm table-hover table-bordered">
+  <thead class="table-light">
     <tr>
       <td>#</td>
       <td>Title</td>
@@ -9,12 +9,7 @@
   </thead>
   <tbody>
     {{#each @entries as |entry|}}
-      <tr>
-        <td>{{entry.track.track_no}}</td>
-        <td>{{entry.track.name}}</td>
-        <td>{{entry.track.artists.0.name}}</td>
-        <td>{{entry.track.album.name}}</td>
-      </tr>
+      <EntryDetail @entry={{entry}} @currentTrackUri={{this.currentTrackUri}} @selectedTrackIds={{this.selectedTrackIds}} @onSelect={{this.select}}/>
     {{/each}}
   </tbody>
 </table>

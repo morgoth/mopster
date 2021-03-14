@@ -1,27 +1,33 @@
-import Service from '@ember/service';
-import Mopidy from 'mopidy';
+import Service from "@ember/service";
+import Mopidy from "mopidy";
 
 export default class MopidyClientService extends Service {
-  client() {
+  configure(host, port) {
     const mopidy = new Mopidy({
-      webSocketUrl: 'ws://192.168.0.103:6680/mopidy/ws/',
+      webSocketUrl: `ws://${host}:${port}/mopidy/ws/`,
     });
 
-    return new Promise((resolve) => {
-      mopidy.on('state:online', () => {
+    const connectedClient = new Promise((resolve) => {
+      mopidy.on("state:online", () => {
         return resolve(mopidy);
       });
+    });
+
+    this.client = mopidy;
+    this.connectedClient = connectedClient;
+  }
+
+  // playback
+  currentTrack() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.playback.getCurrentTlTrack();
     });
   }
 
   // tracklist
   trackList() {
-    return this.client().then((mopidy) => {
-        return mopidy.tracklist.getTlTracks();
-      })
-      .then((result) => {
-        // console.log(result)
-        return result;
-      });
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.getTlTracks();
+    });
   }
 }
