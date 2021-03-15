@@ -30,4 +30,23 @@ export default class MopidyClientService extends Service {
       return mopidy.tracklist.getTlTracks();
     });
   }
+
+  // library
+  browse(uri) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.library.browse({ uri });
+    });
+  }
+
+  lookup(uri) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.library.lookup({ uris: [uri] });
+    });
+  }
+
+  search(query) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.library.search({ query: { any: [query] } });
+    });
+  }
 }

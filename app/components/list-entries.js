@@ -20,9 +20,6 @@ export default class ListEntriesComponent extends Component {
 
   @action
   select(id, modifier) {
-    console.log(modifier);
-    // this.selectedTrackIds = A([id]);
-
     switch (modifier) {
       case "add":
         this.selectedTrackIds.pushObject(id);

@@ -7,6 +7,6 @@ export default class AddStreamComponent extends Component {
 
   @action
   showModal() {
-    this.router.transitionTo("/setup");
+    this.router.transitionTo("search");
   }
 }

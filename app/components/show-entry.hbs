@@ -1,0 +1,14 @@
+{{#each this.albums as |tracks|}}
+  <div class="row mt-2">
+    <div class="col">
+      <div class="card">
+        <h5 class="card-header">{{tracks.0.artists.0.name}} - {{tracks.0.album.name}} - {{tracks.0.album.date}}</h5>
+        <ul class="list-group list-group-flush">
+          {{#each tracks as |track|}}
+            <li class="list-group-item">{{track.name}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
+{{/each}}
