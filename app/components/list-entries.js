@@ -11,11 +11,25 @@ export default class ListEntriesComponent extends Component {
 
   constructor() {
     super(...arguments);
+
     this.mopidyClient.currentTrack().then((result) => {
       if (result) {
         this.currentTrackUri = result.tlid;
       }
     });
+
+    this.mopidyClient.client.on("event:playbackStateChanged", () => {
+      this.mopidyClient.currentTrack().then((result) => {
+        if (result) {
+          this.currentTrackUri = result.tlid;
+        }
+      });
+    });
+    // this.get("mop.client").on("event:tracklistChanged", function () {
+    //   ctrl.get("mop").trackList().then(function (tracks) {
+    //     ctrl.set("model", tracks);
+    //   });
+    // });
   }
 
   @action

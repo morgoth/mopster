@@ -1,8 +1,19 @@
-<div class="row">
-  <div class="col">
-    <Input @id="search" @value={{this.query}} class="form-control" placeholder="Your query..." {{on "keydown" this.search}} />
+<form class="row" {{on "submit" this.search}}>
+  <div class="col-6">
+    <label for="query" class="visually-hidden">Query</label>
+    <Input @id="search" @value={{this.query}} @type="search" class="form-control" placeholder="Your query..." />
   </div>
-</div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary" disabled={{this.isSearching}}>
+      {{#if this.isSearching}}
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span>Searching...</span>
+      {{else}}
+        Search
+      {{/if}}
+    </button>
+  </div>
+</form>
 
 <div class="row mt-4">
   <div class="col-3">

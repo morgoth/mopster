@@ -7,20 +7,23 @@ import { A } from "@ember/array";
 export default class SearchComponent extends Component {
   @service mopidyClient;
   @tracked query = "";
+  @tracked isSearching = false;
   @tracked artists = A([]);
   @tracked albums = A([]);
   @tracked tracks = A([]);
 
   @action search(event) {
-    if (event.key === "Enter") {
-      this.mopidyClient.search(this.query).then((data) => {
-        const result = data[0];
+    event.preventDefault();
 
-        this.artists = A(result.artists);
-        this.albums = A(result.albums);
-        this.tracks = A(result.tracks);
-        console.log(result)
-      });
-    }
+    this.isSearching = true;
+    this.mopidyClient.search(this.query).then((data) => {
+      const result = data[0];
+
+      this.artists = A(result.artists);
+      this.albums = A(result.albums);
+      this.tracks = A(result.tracks);
+
+      this.isSearching = false;
+    });
   }
 }
