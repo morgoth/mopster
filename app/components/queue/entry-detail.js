@@ -4,13 +4,15 @@ import { action } from "@ember/object";
 
 export default class EntryDetailComponent extends Component {
   @service mopidyClient;
+  @service player;
 
   get isCurrent() {
-    return this.args.entry.tlid === this.args.currentTrackUri;
+    const currentTrack = this.player.currentTrack;
+    return this.args.entry.tlid === (currentTrack && currentTrack.tlid);
   }
 
   get isSelected() {
-    return this.args.selectedTrackIds.includes(this.args.entry.tlid);
+    return this.player.selectedTrackIds.includes(this.args.entry.tlid);
   }
 
   @action select(event) {

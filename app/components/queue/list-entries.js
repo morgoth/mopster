@@ -6,37 +6,41 @@ import { action } from "@ember/object";
 
 export default class ListEntriesComponent extends Component {
   @service mopidyClient;
-  @tracked currentTrackUri;
-  @tracked selectedTrackIds = A([]);
+  @service player;
+  @tracked playlist;
 
   constructor() {
     super(...arguments);
 
+    this.mopidyClient.trackList().then((result) => {
+      this.playlist = result;
+    });
+
     this.mopidyClient.currentTrack().then((result) => {
       if (result) {
-        this.currentTrackUri = result.tlid;
+        this.player.currentTrack = result;
       }
     });
 
     this.mopidyClient.client.on("event:playbackStateChanged", () => {
       this.mopidyClient.currentTrack().then((result) => {
         if (result) {
-          this.currentTrackUri = result.tlid;
+          this.player.currentTrack = result;
         }
       });
     });
-    // this.get("mop.client").on("event:tracklistChanged", function () {
-    //   ctrl.get("mop").trackList().then(function (tracks) {
-    //     ctrl.set("model", tracks);
-    //   });
-    // });
+
+    this.mopidyClient.client.on("event:tracklistChanged", () => {
+      this.mopidyClient.trackList().then((result) => {
+        this.playlist = result;
+      });
+    });
   }
 
-  @action
-  select(id, modifier) {
+  @action select(id, modifier) {
     switch (modifier) {
       case "add":
-        this.selectedTrackIds.pushObject(id);
+        this.player.selectedTrackIds.pushObject(id);
         break;
       case "addFromPrevious":
         // TODO
@@ -50,7 +54,7 @@ export default class ListEntriesComponent extends Component {
         // this.set("selectedTrackIds", ids.slice(rangeIndexes[0], rangeIndexes[1] + 1));
         break;
       case "replace":
-        this.selectedTrackIds = A([id]);
+        this.player.selectedTrackIds = A([id]);
         break;
       default:
     }

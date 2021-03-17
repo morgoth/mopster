@@ -1,0 +1,40 @@
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#add-stream">
+  Add stream URL
+</button>
+
+<div class="modal fade" id="add-stream" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Enter Stream URL</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row" {{on "submit" this.add}}>
+          <div class="col-10">
+            <label for="uri" class="visually-hidden">URI</label>
+            <Input @id="uri" @value={{this.uri}} class="form-control" placeholder="https://stream9.nadaje.com:8003/live" />
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-primary">
+              Add
+            </button>
+          </div>
+        </form>
+      </div>
+        <table class="table table-sm m-3">
+          <tbody>
+            {{#each this.uris as |uri|}}
+              <tr>
+                <td>{{uri}}</td>
+                <td>
+                  <button class="btn btn-outline-secondary btn-sm" {{on "click" (fn this.addToQueue uri)}}>Add to queue</button>
+                  <button class="btn btn-danger btn-sm" {{on "click" (fn this.remove uri)}}>Remove</button>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>

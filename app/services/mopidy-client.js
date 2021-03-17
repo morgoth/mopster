@@ -13,6 +13,11 @@ export default class MopidyClientService extends Service {
       });
     });
 
+    // For debugging
+    mopidy.on("event", (event) => {
+      console.log(event);
+    });
+
     this.client = mopidy;
     this.connectedClient = connectedClient;
   }
@@ -28,6 +33,18 @@ export default class MopidyClientService extends Service {
   trackList() {
     return this.connectedClient.then((mopidy) => {
       return mopidy.tracklist.getTlTracks();
+    });
+  }
+
+  add(uris) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.add({ uris });
+    });
+  }
+
+  remove(ids) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.remove({ criteria: { tlid: ids } });
     });
   }
 

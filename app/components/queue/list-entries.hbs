@@ -5,11 +5,12 @@
       <td>Title</td>
       <td>Artist</td>
       <td>Album</td>
+      <td>Length</td>
     </tr>
   </thead>
   <tbody>
-    {{#each @entries as |entry|}}
-      <EntryDetail @entry={{entry}} @currentTrackUri={{this.currentTrackUri}} @selectedTrackIds={{this.selectedTrackIds}} @onSelect={{this.select}}/>
+    {{#each this.playlist as |entry|}}
+      <Queue::EntryDetail @entry={{entry}} @onSelect={{this.select}}/>
     {{/each}}
   </tbody>
 </table>

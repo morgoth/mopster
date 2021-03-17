@@ -6,6 +6,7 @@ import { A } from "@ember/array";
 
 export default class SearchComponent extends Component {
   @service mopidyClient;
+  @service player;
   @tracked query = "";
   @tracked isSearching = false;
   @tracked artists = A([]);

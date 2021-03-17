@@ -1,4 +1,9 @@
 {{page-title "Queue"}}
+<div class="row">
+  <div class="col">
+    <Queue::AddStream />
+    <Queue::RemoveTracks />
+  </div>
+</div>
 
-<AddStream />
-<ListEntries @entries={{@model}}/>
+<Queue::ListEntries />
