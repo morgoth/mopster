@@ -28,4 +28,8 @@ export default class EntryDetailComponent extends Component {
 
     this.args.onSelect(this.args.entry.tlid, modifier);
   }
+
+  @action play() {
+    console.log('play');
+  }
 }

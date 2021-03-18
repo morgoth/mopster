@@ -29,6 +29,12 @@ export default class MopidyClientService extends Service {
     });
   }
 
+  play(track) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.playback.play({ tl_track: track });
+    });
+  }
+
   // tracklist
   trackList() {
     return this.connectedClient.then((mopidy) => {
@@ -64,6 +70,19 @@ export default class MopidyClientService extends Service {
   search(query) {
     return this.connectedClient.then((mopidy) => {
       return mopidy.library.search({ query: { any: [query] } });
+    });
+  }
+
+  // mixer
+  getMute() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.mixer.getMute();
+    });
+  }
+
+  setMute(value) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.mixer.setMute({ mute: value });
     });
   }
 }
