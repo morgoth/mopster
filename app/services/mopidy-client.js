@@ -29,9 +29,39 @@ export default class MopidyClientService extends Service {
     });
   }
 
-  play(track) {
+  play(tlid) {
     return this.connectedClient.then((mopidy) => {
-      return mopidy.playback.play({ tl_track: track });
+      return mopidy.playback.play({ tlid });
+    });
+  }
+
+  previous() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.playback.previous();
+    });
+  }
+
+  next() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.playback.next();
+    });
+  }
+
+  pause() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.playback.pause();
+    });
+  }
+
+  stop() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.playback.stop();
+    });
+  }
+
+  getState() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.playback.getState();
     });
   }
 
@@ -73,7 +103,25 @@ export default class MopidyClientService extends Service {
     });
   }
 
+  getImages(uris) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.library.getImages({ uris });
+    });
+  }
+
   // mixer
+  getVolume() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.mixer.getVolume();
+    });
+  }
+
+  setVolume(volume) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.mixer.setVolume({ volume });
+    });
+  }
+
   getMute() {
     return this.connectedClient.then((mopidy) => {
       return mopidy.mixer.getMute();

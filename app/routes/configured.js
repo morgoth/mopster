@@ -13,7 +13,7 @@ export default class ConfiguredRoute extends Route {
     } else if (serverHost && serverPort) {
       this.mopidyClient.configure(serverHost, serverPort);
     } else {
-      this.transitionTo("configure");
+      this.transitionTo("configuration");
     }
   }
 }

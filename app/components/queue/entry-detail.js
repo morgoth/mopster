@@ -30,6 +30,6 @@ export default class EntryDetailComponent extends Component {
   }
 
   @action play() {
-    console.log('play');
+    this.mopidyClient.play(this.args.entry.tlid);
   }
 }

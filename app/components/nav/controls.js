@@ -6,19 +6,41 @@ import { action } from "@ember/object";
 export default class ControlsComponent extends Component {
   @service mopidyClient;
   @service player;
-  @tracked isMuted = false;
+  @tracked state;
 
   constructor() {
     super(...arguments);
 
-    this.mopidyClient.getMute().then((value) => {
-      this.isMuted = value;
+    this.mopidyClient.getState().then((state) => {
+      this.state = state;
+    });
+
+    this.mopidyClient.client.on("event:playbackStateChanged", (data) => {
+      this.state = data.new_state;
     });
   }
 
-  @action toggleMute() {
-    this.mopidyClient.setMute(!this.isMuted).then(() => {
-      this.isMuted = !this.isMuted;
-    });
+  get isPlaying() {
+    return this.state === "playing";
+  }
+
+  @action previous() {
+    this.mopidyClient.previous();
+  }
+
+  @action play() {
+    this.mopidyClient.play();
+  }
+
+  @action pause() {
+    this.mopidyClient.pause();
+  }
+
+  @action stop() {
+    this.mopidyClient.stop();
+  }
+
+  @action next() {
+    this.mopidyClient.next();
   }
 }

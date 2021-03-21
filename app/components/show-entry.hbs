@@ -1,5 +1,5 @@
 {{#each this.albums as |tracks|}}
-  <div class="row mt-2">
+  <div class="row my-2">
     <div class="col">
       <div class="card">
         <h5 class="card-header">
@@ -11,7 +11,7 @@
           <tbody>
             {{#each tracks as |track|}}
               <tr>
-                <td class="col-1">{{track.track_no}}</td>
+                <td class="col-1 text-center">{{track.track_no}}</td>
                 <td class="col-4">{{track.name}}</td>
                 <td class="col-7"><button class="btn btn-outline-primary btn-sm" {{on "click" (fn this.addToQueue track)}}>Add track to queue</button></td>
               </tr>

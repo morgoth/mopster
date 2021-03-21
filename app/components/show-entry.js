@@ -21,7 +21,6 @@ export default class ShowEntryComponent extends Component {
       return group;
     }, {});
 
-    console.log(groupedTracks);
     return Object.values(groupedTracks);
   }
 
