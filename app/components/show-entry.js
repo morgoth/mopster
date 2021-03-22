@@ -6,6 +6,7 @@ import { action } from "@ember/object";
 
 export default class ShowEntryComponent extends Component {
   @service mopidyClient;
+  @service router;
   @tracked currentTrackUri;
   @tracked selectedTrackIds = A([]);
 
@@ -26,5 +27,6 @@ export default class ShowEntryComponent extends Component {
 
   @action addToQueue(track) {
     this.mopidyClient.add([track.uri]);
+    this.router.transitionTo("queue");
   }
 }

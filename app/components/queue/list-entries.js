@@ -13,7 +13,7 @@ export default class ListEntriesComponent extends Component {
     super(...arguments);
 
     this.mopidyClient.trackList().then((result) => {
-      this.playlist = result;
+      this.playlist = A(result);
     });
 
     this.mopidyClient.currentTrack().then((result) => {
@@ -42,17 +42,21 @@ export default class ListEntriesComponent extends Component {
       case "add":
         this.player.selectedTrackIds.pushObject(id);
         break;
-      case "addFromPrevious":
-        // TODO
-        // let rangeIndexes = [];
-        // const ids = this.get("model").mapBy("tlid");
-        //
-        // rangeIndexes.push(ids.indexOf(this.get("selectedTrackIds.lastObject")));
-        // rangeIndexes.push(ids.lastIndexOf(track.tlid));
-        // rangeIndexes = rangeIndexes.sort(function (a, b) { return a - b; });
-        //
-        // this.set("selectedTrackIds", ids.slice(rangeIndexes[0], rangeIndexes[1] + 1));
+      case "addFromPrevious": {
+        const lastSelectedId = this.player.selectedTrackIds[
+          this.player.selectedTrackIds.length - 1
+        ];
+        const trackIds = this.playlist.mapBy("tlid");
+        const indexes = [
+          trackIds.indexOf(lastSelectedId),
+          trackIds.indexOf(id),
+        ].sort((a, b) => a - b);
+
+        this.player.selectedTrackIds = A(
+          trackIds.slice(indexes[0], indexes[1] + 1)
+        );
         break;
+      }
       case "replace":
         this.player.selectedTrackIds = A([id]);
         break;
