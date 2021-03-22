@@ -65,6 +65,18 @@ export default class MopidyClientService extends Service {
     });
   }
 
+  getTimePosition() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.playback.getTimePosition();
+    });
+  }
+
+  seek(timePosition) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.playback.seek({ time_position: timePosition });
+    });
+  }
+
   // tracklist
   trackList() {
     return this.connectedClient.then((mopidy) => {
