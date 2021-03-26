@@ -1,19 +1,17 @@
 import Component from "@glimmer/component";
 import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
-import { A } from "@ember/array";
 import { action } from "@ember/object";
 
 export default class ShowEntryComponent extends Component {
   @service mopidyClient;
   @service router;
   @tracked currentTrackUri;
-  @tracked selectedTrackIds = A([]);
 
-  get albums() {
+  get groupedTracks() {
     const tracks = Object.values(this.args.entry)[0];
 
-    const groupedTracks = tracks.reduce((group, track) => {
+    return tracks.reduce((group, track) => {
       if (group[track.album.uri]) {
         group[track.album.uri].push(track);
       } else {
@@ -21,8 +19,10 @@ export default class ShowEntryComponent extends Component {
       }
       return group;
     }, {});
+  }
 
-    return Object.values(groupedTracks);
+  get albums() {
+    return Object.values(this.groupedTracks);
   }
 
   @action addToQueue(track) {
