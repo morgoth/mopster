@@ -22,6 +22,10 @@ export default class MopidyClientService extends Service {
     //   console.log(event);
     //   console.log(payload);
     // });
+    // mopidy.on("state", (event, payload) => {
+    //   console.log(event);
+    //   console.log(payload);
+    // });
 
     this.client = mopidy;
     this.connectedClient = connectedClient;
@@ -79,6 +83,12 @@ export default class MopidyClientService extends Service {
   seek(timePosition) {
     return this.connectedClient.then((mopidy) => {
       return mopidy.playback.seek({ time_position: timePosition });
+    });
+  }
+
+  getStreamTitle() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.playback.getStreamTitle();
     });
   }
 
