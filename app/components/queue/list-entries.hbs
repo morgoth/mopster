@@ -1,0 +1,16 @@
+<table class="table table-sm table-hover table-bordered mt-2 cursor-default">
+  <thead class="table-light">
+    <tr>
+      <td class="text-center" title="Track number on album">#</td>
+      <td>Title</td>
+      <td>Artist</td>
+      <td>Album</td>
+      <td>Length</td>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this.playlist as |entry|}}
+      <Queue::EntryDetail @entry={{entry}} @onSelect={{this.select}}/>
+    {{/each}}
+  </tbody>
+</table>

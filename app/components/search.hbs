@@ -1,0 +1,49 @@
+<form class="row" {{on "submit" this.search}}>
+  <div class="col-6">
+    <label for="query" class="visually-hidden">Query</label>
+    <Input @id="search" @value={{this.query}} @type="search" class="form-control" placeholder="Your query..." />
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary" disabled={{this.isSearching}}>
+      {{#if this.isSearching}}
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        <span>Searching...</span>
+      {{else}}
+        Search
+      {{/if}}
+    </button>
+  </div>
+</form>
+
+<div class="row mt-4">
+  <div class="col-3">
+    <div class="card">
+      <h5 class="card-header">Artists</h5>
+      <ul class="list-group list-group-flush">
+        {{#each this.artists as |artist|}}
+          <li class="list-group-item"><LinkTo @route="entries" @model={{artist.uri}} >{{artist.name}}</LinkTo></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <h5 class="card-header">Albums</h5>
+      <ul class="list-group list-group-flush">
+        {{#each this.albums as |album|}}
+          <li class="list-group-item"><LinkTo @route="entries" @model={{album.uri}} >{{album.artists.0.name}} - {{album.name}}</LinkTo></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card">
+      <h5 class="card-header">Tracks</h5>
+      <ul class="list-group list-group-flush">
+        {{#each this.tracks as |track|}}
+          <li class="list-group-item"><LinkTo @route="entries" @model={{track.uri}} >{{track.artists.0.name}} - {{track.album.name}} - {{track.name}}</LinkTo></li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

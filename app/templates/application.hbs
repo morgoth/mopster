@@ -1,0 +1,23 @@
+{{page-title "Mopster"}}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav me-auto">
+        <LinkTo @route="queue" class="nav-link">Queue</LinkTo>
+        <LinkTo @route="search" class="nav-link">Search</LinkTo>
+        <LinkTo @route="configuration" class="nav-link">Config</LinkTo>
+        <Nav::Volume />
+        <Nav::Controls />
+      </div>
+      <Nav::Search />
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  {{outlet}}
+</div>
