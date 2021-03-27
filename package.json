@@ -1,11 +1,11 @@
 {
   "name": "mopster",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
-  "description": "Small description for mopster goes here",
-  "repository": "",
+  "description": "Web client for Mopidy",
+  "repository": "https://github.com/cowbell/mopster",
   "license": "MIT",
-  "author": "",
+  "author": "Wojciech Wnętrzak",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -38,7 +38,6 @@
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.1",
-    "ember-data": "~3.25.0",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.0.4",
     "ember-load-initializers": "^2.1.2",
@@ -48,7 +47,6 @@
     "ember-resolver": "^8.0.2",
     "ember-source": "~3.25.1",
     "ember-template-lint": "^2.18.1",
-    "ember-welcome-page": "^4.0.0",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-ember": "^10.2.0",
