@@ -8,11 +8,16 @@ export default class ConfigureClientComponent extends Component {
   @service mopidyClient;
   @tracked host = localStorage.getItem("mopidyHost");
   @tracked port = localStorage.getItem("mopidyPort");
+  @tracked lastFmApiKey = localStorage.getItem("lastFmApiKey");
 
   @action save(event) {
     event.preventDefault();
+
     localStorage.setItem("mopidyHost", this.host);
     localStorage.setItem("mopidyPort", this.port);
+    if (this.lastFmApiKey && this.lastFmApiKey !== "") {
+      localStorage.setItem("lastFmApiKey", this.lastFmApiKey);
+    }
     this.router.transitionTo("queue");
   }
 }

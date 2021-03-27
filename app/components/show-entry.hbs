@@ -1,35 +1,34 @@
 {{#each this.albums as |tracks|}}
-  <div class="row my-2">
-    <div class="col">
-      <div class="card">
-        <div class="row p-2">
-          <div class="col-10">
-            <div class="card-body">
-              <div class="card-title">
-                <LinkTo @route="entries" @model={{tracks.0.artists.0.uri}}>{{artist-names tracks.0.artists}}</LinkTo>
-              </div>
-              <div class="card-text">
-                <LinkTo @route="entries" @model={{tracks.0.album.uri}}>{{tracks.0.album.date}} - {{tracks.0.album.name}}</LinkTo>
-              </div>
-            </div>
+  <div class="card">
+    <div class="row g-0 p-2 bg-light">
+      <div class="col-2">
+        <AlbumImage @album={{tracks.0.album}} />
+      </div>
+      <div class="col-8">
+        <div class="card-body">
+          <div class="card-title">
+            <LinkTo @route="entries" @model={{tracks.0.artists.0.uri}}>{{artist-names tracks.0.artists}}</LinkTo>
           </div>
-          <div class="col-2">
-            <button class="btn btn-outline-primary btn-sm" type="button" {{on "click" (fn this.addToQueue tracks.0.album)}}>Add album to queue</button>
+          <div class="card-text">
+            <LinkTo @route="entries" @model={{tracks.0.album.uri}}>{{tracks.0.album.date}} - {{tracks.0.album.name}}</LinkTo>
           </div>
         </div>
-
-        <table class="table table-sm mb-0">
-          <tbody>
-            {{#each tracks as |track|}}
-              <tr>
-                <td class="col-1 text-center">{{track.track_no}}</td>
-                <td class="col-4">{{track.name}}</td>
-                <td class="col-7"><button class="btn btn-outline-primary btn-sm" type="button" {{on "click" (fn this.addToQueue track)}}>Add track to queue</button></td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
+      </div>
+      <div class="col-2">
+        <button class="btn btn-outline-primary btn-sm" type="button" {{on "click" (fn this.addToQueue tracks.0.album)}}>Add album to queue</button>
       </div>
     </div>
+
+    <table class="table table-sm mb-0">
+      <tbody>
+        {{#each tracks as |track|}}
+          <tr>
+            <td class="col-1 text-center">{{track.track_no}}</td>
+            <td class="col-4">{{track.name}}</td>
+            <td class="col-7"><button class="btn btn-outline-primary btn-sm" type="button" {{on "click" (fn this.addToQueue track)}}>Add track to queue</button></td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
 {{/each}}

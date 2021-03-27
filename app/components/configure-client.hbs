@@ -1,12 +1,24 @@
 <form {{on "submit" this.save}}>
-  <div class="mb-3">
-    <label for="host" class="form-label">Mopidy Host</label>
-    <Input @value={{this.host}} class="form-control" @id="host" placeholder="192.168.0.103 or localhost" required />
-  </div>
-  <div class="mb-3">
-    <label for="port" class="form-label">Websockets Port</label>
-    <Input @value={{this.port}} class="form-control" @id="port" placeholder="6680" required />
-  </div>
+  <fieldset>
+    <div class="mb-3">
+      <label for="host" class="form-label">Mopidy Host</label>
+      <Input @value={{this.host}} class="form-control" @id="host" placeholder="192.168.0.103 or localhost" required />
+    </div>
+    <div class="mb-3">
+      <label for="port" class="form-label">Websockets Port</label>
+      <Input @value={{this.port}} class="form-control" @id="port" placeholder="6680" required />
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>LastFM</legend>
+    <div class="mb-3">
+      <label for="last-fm-api-key" class="form-label">API Key (optional)</label>
+      <Input @value={{this.lastFmApiKey}} class="form-control" @id="last-fm-api-key" placeholder="Your LastFM API Key" />
+      <div class="form-text">
+        Used for fetching album images. Instructions how to create your own API key can be found on <a href="https://www.last.fm/api#getting-started">LastFM docs</a>.
+      </div>
+    </div>
+  </fieldset>
   <button type="submit" class="btn btn-primary">Save</button>
   <div class="form-text">Values will be stored in browser local storage for your convenience</div>
 </form>
