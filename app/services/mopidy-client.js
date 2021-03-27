@@ -14,8 +14,9 @@ export default class MopidyClientService extends Service {
     });
 
     // For debugging
-    mopidy.on("event", (event) => {
+    mopidy.on("event", (event, payload) => {
       console.log(event);
+      console.log(payload);
     });
 
     this.client = mopidy;
@@ -93,6 +94,54 @@ export default class MopidyClientService extends Service {
   remove(ids) {
     return this.connectedClient.then((mopidy) => {
       return mopidy.tracklist.remove({ criteria: { tlid: ids } });
+    });
+  }
+
+  getRepeat() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.getRepeat();
+    });
+  }
+
+  setRepeat(value) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.setRepeat({ value });
+    });
+  }
+
+  getRandom() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.getRandom();
+    });
+  }
+
+  setRandom(value) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.setRandom({ value });
+    });
+  }
+
+  getSingle() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.getSingle();
+    });
+  }
+
+  setSingle(value) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.setSingle({ value });
+    });
+  }
+
+  getConsume() {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.getConsume();
+    });
+  }
+
+  setConsume(value) {
+    return this.connectedClient.then((mopidy) => {
+      return mopidy.tracklist.setConsume({ value });
     });
   }
 
