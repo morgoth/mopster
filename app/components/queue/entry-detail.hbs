@@ -1,4 +1,4 @@
-<tr class={{concat (if this.isCurrent "table-success") " " (if this.isSelected "table-primary")}} {{on "click" this.select}} {{on "dblclick" this.play}}>
+<tr role="button" class={{concat (if this.isCurrent "table-success") " " (if this.isSelected "table-primary")}} {{on "click" this.select}} {{on "dblclick" this.play}}>
   <td class="text-center">{{@entry.track.track_no}}</td>
   <td>{{@entry.track.name}}</td>
   <td>{{@entry.track.artists.0.name}}</td>

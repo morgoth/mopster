@@ -14,7 +14,7 @@
             </div>
           </div>
           <div class="col-2">
-            <button class="btn btn-outline-primary btn-sm" {{on "click" (fn this.addToQueue tracks.0.album)}}>Add album to queue</button>
+            <button class="btn btn-outline-primary btn-sm" type="button" {{on "click" (fn this.addToQueue tracks.0.album)}}>Add album to queue</button>
           </div>
         </div>
 
@@ -24,7 +24,7 @@
               <tr>
                 <td class="col-1 text-center">{{track.track_no}}</td>
                 <td class="col-4">{{track.name}}</td>
-                <td class="col-7"><button class="btn btn-outline-primary btn-sm" {{on "click" (fn this.addToQueue track)}}>Add track to queue</button></td>
+                <td class="col-7"><button class="btn btn-outline-primary btn-sm" type="button" {{on "click" (fn this.addToQueue track)}}>Add track to queue</button></td>
               </tr>
             {{/each}}
           </tbody>

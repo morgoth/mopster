@@ -28,8 +28,8 @@
               <tr>
                 <td>{{uri}}</td>
                 <td>
-                  <button class="btn btn-outline-secondary btn-sm" {{on "click" (fn this.addToQueue uri)}}>Add to queue</button>
-                  <button class="btn btn-danger btn-sm" {{on "click" (fn this.remove uri)}}>Remove</button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" {{on "click" (fn this.addToQueue uri)}}>Add to queue</button>
+                  <button type="button" class="btn btn-danger btn-sm" {{on "click" (fn this.remove uri)}}>Remove</button>
                 </td>
               </tr>
             {{/each}}
