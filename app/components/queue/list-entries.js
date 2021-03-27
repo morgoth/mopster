@@ -22,14 +22,6 @@ export default class ListEntriesComponent extends Component {
       }
     });
 
-    this.mopidyClient.client.on("event:playbackStateChanged", () => {
-      this.mopidyClient.currentTrack().then((result) => {
-        if (result) {
-          this.player.currentTrack = result;
-        }
-      });
-    });
-
     this.mopidyClient.client.on("event:tracklistChanged", () => {
       this.mopidyClient.trackList().then((result) => {
         this.playlist = result;
