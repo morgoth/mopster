@@ -1,10 +1,11 @@
 import Component from "@glimmer/component";
 import { inject as service } from "@ember/service";
+import { tracked } from "@glimmer/tracking";
 
 export default class NavComponent extends Component {
-  @service mopidyClient;
+  @service player;
 
-  get isConfigured() {
-    return !!this.mopidyClient.client;
+  get isOnline() {
+    return this.player.isOnline;
   }
 }

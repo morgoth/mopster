@@ -1,7 +1,10 @@
 import Service from "@ember/service";
 import Mopidy from "mopidy";
+import { inject as service } from "@ember/service";
 
 export default class MopidyClientService extends Service {
+  @service player;
+
   configure(host, port) {
     const mopidy = new Mopidy({
       webSocketUrl: `ws://${host}:${port}/mopidy/ws/`,
@@ -9,15 +12,16 @@ export default class MopidyClientService extends Service {
 
     const connectedClient = new Promise((resolve) => {
       mopidy.on("state:online", () => {
+        this.player.isOnline = true;
         return resolve(mopidy);
       });
     });
 
     // For debugging
-    mopidy.on("event", (event, payload) => {
-      console.log(event);
-      console.log(payload);
-    });
+    // mopidy.on("event", (event, payload) => {
+    //   console.log(event);
+    //   console.log(payload);
+    // });
 
     this.client = mopidy;
     this.connectedClient = connectedClient;
