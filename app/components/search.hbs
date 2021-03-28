@@ -15,7 +15,15 @@
   </div>
 </form>
 
-<div class="row mt-4">
+<ul class="nav nav-tabs mt-2">
+  {{#each this.providers as |provider|}}
+    <li class="nav-item" title="Source">
+      <a class="nav-link text-capitalize {{if (eq this.selectedProvider provider) 'active'}}" href="#" {{on "click" (fn this.switchProvider provider)}}>{{provider}}</a>
+    </li>
+  {{/each}}
+</ul>
+
+<div class="row">
   <div class="col-12 col-md-3">
     <div class="card">
       <h5 class="card-header">Artists</h5>

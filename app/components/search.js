@@ -9,6 +9,9 @@ export default class SearchComponent extends Component {
   @service player;
   @tracked query;
   @tracked isSearching = false;
+  @tracked results;
+  @tracked selectedProvider;
+  @tracked providers = A([]);
   @tracked artists = A([]);
   @tracked albums = A([]);
   @tracked tracks = A([]);
@@ -29,14 +32,44 @@ export default class SearchComponent extends Component {
 
     this.isSearching = true;
     this.mopidyClient.search(this.query).then((data) => {
-      const result = data[0];
+      const rawResults = Object.values(data);
 
-      this.artists = A(result.artists);
-      this.albums = A(result.albums);
-      this.tracks = A(result.tracks);
+      this.providers = this.providerNames(
+        rawResults.map((result) => result.uri)
+      );
 
+      this.results = this.providers.reduce((all, provider, index) => {
+        all[provider] = rawResults[index];
+        return all;
+      }, {});
+
+      const presentedProvider = this.providers.sort(
+        (a, b) =>
+          (this.results[b].tracks || []).length -
+          (this.results[a].tracks || []).length
+      )[0];
+      this.assignProvider(presentedProvider);
       this.isSearching = false;
       this.args.onQueryUpdate(this.query);
     });
+  }
+
+  @action switchProvider(provider, event) {
+    event.preventDefault();
+
+    this.assignProvider(provider);
+  }
+
+  assignProvider(provider) {
+    this.selectedProvider = provider;
+    const result = this.results[this.selectedProvider];
+
+    this.artists = A(result.artists);
+    this.albums = A(result.albums);
+    this.tracks = A(result.tracks);
+  }
+
+  providerNames(providers) {
+    return providers.map((provider) => provider.split(":")[0]);
   }
 }
