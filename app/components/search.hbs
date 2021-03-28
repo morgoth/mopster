@@ -1,7 +1,7 @@
 <form class="row" {{on "submit" this.search}}>
   <div class="col-6">
     <label for="query" class="visually-hidden">Query</label>
-    <Input @id="search" @value={{this.query}} @type="search" class="form-control" placeholder="Your query..." />
+    <Input id="search" @value={{this.query}} @type="search" class="form-control" placeholder="Your query..." />
   </div>
   <div class="col-auto">
     <button type="submit" class="btn btn-primary" disabled={{this.isSearching}}>

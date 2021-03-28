@@ -13,7 +13,7 @@
         <form class="row" {{on "submit" this.add}}>
           <div class="col-10">
             <label for="uri" class="visually-hidden">URI</label>
-            <Input @id="uri" @value={{this.uri}} class="form-control" placeholder="https://stream9.nadaje.com:8003/live" />
+            <Input id="uri" @value={{this.uri}} class="form-control" placeholder="https://stream9.nadaje.com:8003/live" />
           </div>
           <div class="col-2">
             <button type="submit" class="btn btn-primary">

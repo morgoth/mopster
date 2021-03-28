@@ -6,4 +6,5 @@
   </svg>
 </button>
 
-<Input @type="range" @value={{this.volume}} {{on "change" this.setVolume}} class="form-range form-control py-3 mx-2" title="Volume control" />
+<label for="volume-control" class="d-none">Volume Control</label>
+<Input id="volume-control" @type="range" @value={{this.volume}} {{on "change" this.setVolume}} class="form-range form-control py-3 mx-2" title="Volume control" />
