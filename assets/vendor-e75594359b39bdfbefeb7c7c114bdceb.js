@@ -4172,15 +4172,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var r=n.default
 Ember._setComponentManager((function(e){return new t.default(e)}),r)
 var i=r
-e.default=i})),define("ember-cli-app-version/initializer-factory",["exports"],(function(e){"use strict"
-Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e,n){var r=!1
-return function(){if(!r&&e&&n){var i=Ember.String.classify(e)
-t.register(i,n),r=!0}}}
-var t=Ember.libraries})),define("ember-cli-app-version/utils/regexp",["exports"],(function(e){"use strict"
-Object.defineProperty(e,"__esModule",{value:!0}),e.shaRegExp=e.versionExtendedRegExp=e.versionRegExp=void 0
-e.versionRegExp=/\d+[.]\d+[.]\d+/
-e.versionExtendedRegExp=/\d+[.]\d+[.]\d+-[a-z]*([.]\d+)?/
-e.shaRegExp=/[a-z\d]{8}$/})),define("ember-fetch/errors",["exports"],(function(e){"use strict"
+e.default=i})),define("ember-fetch/errors",["exports"],(function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.isUnauthorizedResponse=function(e){return 401===e.status},e.isForbiddenResponse=function(e){return 403===e.status},e.isInvalidResponse=function(e){return 422===e.status},e.isBadRequestResponse=function(e){return 400===e.status},e.isNotFoundResponse=function(e){return 404===e.status},e.isGoneResponse=function(e){return 410===e.status},e.isAbortError=function(e){return"AbortError"==e.name},e.isConflictResponse=function(e){return 409===e.status},e.isServerErrorResponse=function(e){return e.status>=500&&e.status<600}})),define("ember-fetch/types",["exports"],(function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.isPlainObject=function(e){return"[object Object]"===Object.prototype.toString.call(e)}})),define("ember-fetch/utils/determine-body-promise",["exports"],(function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e,t){return e.text().then((function(n){var r=n
@@ -4349,8 +4341,7 @@ return t&&t.default&&(t=t.default),t}})
 i.reopenClass({moduleBasedResolver:!0})
 var o=i
 e.default=o})),define("ember-resolver/utils/class-factory",["exports"],(function(e){"use strict"
-Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e){return{create:function(t){return"function"==typeof e.extend?e.extend(t):e}}}}))
-define("ember-test-waiters/index",["exports","@ember/test-waiters"],(function(e,t){"use strict"
+Object.defineProperty(e,"__esModule",{value:!0}),e.default=function(e){return{create:function(t){return"function"==typeof e.extend?e.extend(t):e}}}})),define("ember-test-waiters/index",["exports","@ember/test-waiters"],(function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),Object.keys(t).forEach((function(n){"default"!==n&&"__esModule"!==n&&(n in e&&e[n]===t[n]||Object.defineProperty(e,n,{enumerable:!0,get:function(){return t[n]}}))}))}))
 var __ember_auto_import__=function(e){function t(t){for(var r,a,s=t[0],u=t[1],l=t[2],f=0,h=[];f<s.length;f++)a=s[f],Object.prototype.hasOwnProperty.call(i,a)&&i[a]&&h.push(i[a][0]),i[a]=0
 for(r in u)Object.prototype.hasOwnProperty.call(u,r)&&(e[r]=u[r])
