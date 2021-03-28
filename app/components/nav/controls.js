@@ -29,7 +29,8 @@ export default class ControlsComponent extends Component {
   }
 
   @action play() {
-    this.mopidyClient.play();
+    const selectedTrackId = this.player.selectedTrackIds[0];
+    this.mopidyClient.play(selectedTrackId);
   }
 
   @action pause() {
