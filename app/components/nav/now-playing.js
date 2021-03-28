@@ -13,6 +13,10 @@ export default class ControlsComponent extends Component {
     this.mopidyClient.client.on("event:streamTitleChanged", (data) => {
       this.streamTitle = data.title;
     });
+
+    this.mopidyClient.getStreamTitle().then((title) => {
+      this.streamTitle = title;
+    });
   }
 
   get title() {

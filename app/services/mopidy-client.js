@@ -23,6 +23,12 @@ export default class MopidyClientService extends Service {
       });
     });
 
+    mopidy.on("event:trackPlaybackStarted", () => {
+      this.currentTrack().then((result) => {
+        this.player.currentTrack = result;
+      });
+    });
+
     // For debugging
     // mopidy.on("event", (event, payload) => {
     //   console.log(event);
