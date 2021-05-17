@@ -35,9 +35,8 @@ export default class ListEntriesComponent extends Component {
         this.player.selectedTrackIds.pushObject(id);
         break;
       case "addFromPrevious": {
-        const lastSelectedId = this.player.selectedTrackIds[
-          this.player.selectedTrackIds.length - 1
-        ];
+        const lastSelectedId =
+          this.player.selectedTrackIds[this.player.selectedTrackIds.length - 1];
         const trackIds = this.playlist.mapBy("tlid");
         const indexes = [
           trackIds.indexOf(lastSelectedId),
