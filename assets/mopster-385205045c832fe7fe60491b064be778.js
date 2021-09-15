@@ -107,8 +107,7 @@ e.default=i})),define("mopster/helpers/track-lenght",["exports","@ember/componen
 var i=(0,t.helper)((function(e){const t=Math.floor(e/1e3%60),i=Math.floor(e/6e4%60)
 return 0===i&&0===t?null:`${i}:${t<10?`0${t}`:t}`}))
 e.default=i})),define("mopster/initializers/container-debug-adapter",["exports","ember-resolver/resolvers/classic/container-debug-adapter"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var i={name:"container-debug-adapter",initialize(){let e=arguments[1]||arguments[0]
-e.register("container-debug-adapter:main",t.default),e.inject("container-debug-adapter:main","namespace","application:main")}}
+var i={name:"container-debug-adapter",initialize(){(arguments[1]||arguments[0]).register("container-debug-adapter:main",t.default)}}
 e.default=i})),define("mopster/initializers/export-application-global",["exports","ember","mopster/config/environment"],(function(e,t,i){function r(){var e=arguments[1]||arguments[0]
 if(!1!==i.default.exportApplicationGlobal){var r
 if("undefined"!=typeof window)r=window
