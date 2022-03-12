@@ -51,10 +51,10 @@ return this},s.prototype.listeners=function(e){return u(this,e,!0)},s.prototype.
 function s(e){return e.replace(/(_[a-z])/g,(e=>e.toUpperCase().replace("_","")))}class i extends r{constructor(e){super(),this._console=this._getConsole(e||{}),this._settings=this._configure(e||{}),this._backoffDelay=this._settings.backoffDelayMin,this._pendingRequests={},this._webSocket=null,this._delegateEvents(),this._settings.autoConnect&&this.connect()}_getConsole(e){if(void 0!==e.console)return e.console
 const t="undefined"!=typeof console&&console||{}
 return t.log=t.log||(()=>{}),t.warn=t.warn||(()=>{}),t.error=t.error||(()=>{}),t}_configure(e){const t={...e},n="undefined"!=typeof document&&"https:"===document.location.protocol?"wss://":"ws://",r="undefined"!=typeof document&&document.location.host||"localhost"
-return t.webSocketUrl=e.webSocketUrl||`${n}${r}/mopidy/ws`,!1!==e.autoConnect&&(t.autoConnect=!0),t.backoffDelayMin=e.backoffDelayMin||1e3,t.backoffDelayMax=e.backoffDelayMax||64e3,t}_delegateEvents(){this.removeAllListeners("websocket:close"),this.removeAllListeners("websocket:error"),this.removeAllListeners("websocket:incomingMessage"),this.removeAllListeners("websocket:open"),this.removeAllListeners("state:offline"),this.on("websocket:close",this._cleanup),this.on("websocket:error",this._handleWebSocketError),this.on("websocket:incomingMessage",this._handleMessage),this.on("websocket:open",this._resetBackoffDelay),this.on("websocket:open",this._getApiSpec),this.on("state:offline",this._reconnect)}off(...e){if(0===e.length)this.removeAllListeners()
-else if(1===e.length){const t=e[0]
-if("string"!=typeof t)throw Error("Expected no arguments, a string, or a string and a listener.")
-this.removeAllListeners(t)}else this.removeListener(...e)}connect(){if(this._webSocket){if(this._webSocket.readyState===i.WebSocket.OPEN)return
+return t.webSocketUrl=e.webSocketUrl||`${n}${r}/mopidy/ws`,!1!==e.autoConnect&&(t.autoConnect=!0),t.backoffDelayMin=e.backoffDelayMin||1e3,t.backoffDelayMax=e.backoffDelayMax||64e3,t}_delegateEvents(){this.removeAllListeners("websocket:close"),this.removeAllListeners("websocket:error"),this.removeAllListeners("websocket:incomingMessage"),this.removeAllListeners("websocket:open"),this.removeAllListeners("state:offline"),this.on("websocket:close",this._cleanup),this.on("websocket:error",this._handleWebSocketError),this.on("websocket:incomingMessage",this._handleMessage),this.on("websocket:open",this._resetBackoffDelay),this.on("websocket:open",this._getApiSpec),this.on("state:offline",this._reconnect)}off(){if(0===arguments.length)this.removeAllListeners()
+else if(1===arguments.length){const e=arguments.length<=0?void 0:arguments[0]
+if("string"!=typeof e)throw Error("Expected no arguments, a string, or a string and a listener.")
+this.removeAllListeners(e)}else this.removeListener(...arguments)}connect(){if(this._webSocket){if(this._webSocket.readyState===i.WebSocket.OPEN)return
 this._webSocket.close()}this._webSocket=this._settings.webSocket||new i.WebSocket(this._settings.webSocketUrl),this._webSocket.onclose=e=>{this.emit("websocket:close",e)},this._webSocket.onerror=e=>{this.emit("websocket:error",e)},this._webSocket.onopen=()=>{this.emit("websocket:open")},this._webSocket.onmessage=e=>{this.emit("websocket:incomingMessage",e)}}_cleanup(e){Object.keys(this._pendingRequests).forEach((t=>{const{reject:n}=this._pendingRequests[t]
 delete this._pendingRequests[t]
 const r=new i.ConnectionError("WebSocket closed")
@@ -72,19 +72,22 @@ t.code=e.error.code,t.data=e.error.data,n(t),this._console.warn("Server returned
 t.data={response:e},n(t),this._console.warn("Response without 'result' or 'error' received. Message was:",e)}}_handleEvent(e){const t={...e}
 delete t.event
 const n=`event:${s(e.event)}`
-this.emit("event",n,t),this.emit(n,t)}_getApiSpec(){return this._send({method:"core.describe"}).then(this._createApi.bind(this)).catch(this._handleWebSocketError.bind(this))}_createApi(e){const t=e=>(...t)=>{const n={method:e}
-return 0===t.length?this._send(n):t.length>1?Promise.reject(new Error("Expected zero arguments, a single array, or a single object.")):Array.isArray(t[0])||t[0]===Object(t[0])?([n.params]=t,this._send(n)):Promise.reject(new TypeError("Expected an array or an object."))},n=e=>{let t=this
+this.emit("event",n,t),this.emit(n,t)}_getApiSpec(){return this._send({method:"core.describe"}).then(this._createApi.bind(this)).catch(this._handleWebSocketError.bind(this))}_createApi(e){var t=this
+const n=e=>{let t=this
 return e.forEach((e=>{const n=s(e)
 t[n]=t[n]||{},t=t[n]})),t}
 Object.keys(e).forEach((r=>{const o=(e=>{let t=e.split(".")
 return t.length>=1&&"core"===t[0]&&(t=t.slice(1)),t})(r),i=s(o.slice(-1)[0]),c=n(o.slice(0,-1))
-c[i]=t(r),c[i].description=e[r].description,c[i].params=e[r].params})),this.emit("state","state:online"),this.emit("state:online")}}class c extends Error{constructor(e){super(e),this.name="ConnectionError"}}i.ConnectionError=c
+var a
+c[i]=(a=r,function(){const e={method:a}
+for(var n=arguments.length,r=new Array(n),o=0;o<n;o++)r[o]=arguments[o]
+return 0===r.length?t._send(e):r.length>1?Promise.reject(new Error("Expected zero arguments, a single array, or a single object.")):Array.isArray(r[0])||r[0]===Object(r[0])?([e.params]=r,t._send(e)):Promise.reject(new TypeError("Expected an array or an object."))}),c[i].description=e[r].description,c[i].params=e[r].params})),this.emit("state","state:online"),this.emit("state:online")}}class c extends Error{constructor(e){super(e),this.name="ConnectionError"}}i.ConnectionError=c
 class a extends Error{constructor(e){super(e),this.name="ServerError"}}i.ServerError=a,i.WebSocket=o,i.prototype._nextRequestId=(()=>{let e=-1
-return()=>(e+=1,e)})(),e.exports=i},945:(e,t,n)=>{var r,o
-e.exports=(r=_eai_d,o=_eai_r,window.emberAutoImportDynamic=function(e){return 1===arguments.length?o("_eai_dyn_"+e):o("_eai_dynt_"+e)(Array.prototype.slice.call(arguments,1))},window.emberAutoImportSync=function(e){return o("_eai_sync_"+e)(Array.prototype.slice.call(arguments,1))},void r("mopidy",[],(function(){return n(443)})))},851:function(e,t){window._eai_r=require,window._eai_d=define}},t={}
+return()=>(e+=1,e)})(),e.exports=i},275:(e,t,n)=>{var r,o
+e.exports=(r=_eai_d,o=_eai_r,window.emberAutoImportDynamic=function(e){return 1===arguments.length?o("_eai_dyn_"+e):o("_eai_dynt_"+e)(Array.prototype.slice.call(arguments,1))},window.emberAutoImportSync=function(e){return o("_eai_sync_"+e)(Array.prototype.slice.call(arguments,1))},void r("mopidy",[],(function(){return n(443)})))},165:function(e,t){window._eai_r=require,window._eai_d=define}},t={}
 function n(r){var o=t[r]
 if(void 0!==o)return o.exports
 var s=t[r]={exports:{}}
-return e[r].call(s.exports,s,s.exports,n),s.exports}n(851)
-var r=n(945)
+return e[r].call(s.exports,s,s.exports,n),s.exports}n(165)
+var r=n(275)
 __ember_auto_import__=r})()
