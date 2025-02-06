@@ -83,11 +83,11 @@ c[i]=(a=r,function(){const e={method:a}
 for(var n=arguments.length,r=new Array(n),o=0;o<n;o++)r[o]=arguments[o]
 return 0===r.length?t._send(e):r.length>1?Promise.reject(new Error("Expected zero arguments, a single array, or a single object.")):Array.isArray(r[0])||r[0]===Object(r[0])?([e.params]=r,t._send(e)):Promise.reject(new TypeError("Expected an array or an object."))}),c[i].description=e[r].description,c[i].params=e[r].params})),this.emit("state","state:online"),this.emit("state:online")}}class c extends Error{constructor(e){super(e),this.name="ConnectionError"}}i.ConnectionError=c
 class a extends Error{constructor(e){super(e),this.name="ServerError"}}i.ServerError=a,i.WebSocket=o,i.prototype._nextRequestId=(()=>{let e=-1
-return()=>(e+=1,e)})(),e.exports=i},275:(e,t,n)=>{var r,o
-e.exports=(r=_eai_d,o=_eai_r,window.emberAutoImportDynamic=function(e){return 1===arguments.length?o("_eai_dyn_"+e):o("_eai_dynt_"+e)(Array.prototype.slice.call(arguments,1))},window.emberAutoImportSync=function(e){return o("_eai_sync_"+e)(Array.prototype.slice.call(arguments,1))},void r("mopidy",[],(function(){return n(443)})))},165:function(e,t){window._eai_r=require,window._eai_d=define}},t={}
+return()=>(e+=1,e)})(),e.exports=i},571:(e,t,n)=>{var r,o
+e.exports=(r=_eai_d,o=_eai_r,window.emberAutoImportDynamic=function(e){return 1===arguments.length?o("_eai_dyn_"+e):o("_eai_dynt_"+e)(Array.prototype.slice.call(arguments,1))},window.emberAutoImportSync=function(e){return o("_eai_sync_"+e)(Array.prototype.slice.call(arguments,1))},void r("mopidy",[],(function(){return n(443)})))},63:function(e,t){window._eai_r=require,window._eai_d=define}},t={}
 function n(r){var o=t[r]
 if(void 0!==o)return o.exports
 var s=t[r]={exports:{}}
-return e[r].call(s.exports,s,s.exports,n),s.exports}n(165)
-var r=n(275)
+return e[r].call(s.exports,s,s.exports,n),s.exports}n(63)
+var r=n(571)
 __ember_auto_import__=r})()
